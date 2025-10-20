@@ -57,7 +57,6 @@ Além disso, o sistema emite **avisos automáticos antes do início de cada curs
 ## ⚙️ Como Executar o Projeto
 
 ### 1️⃣ Clonar o Repositório
-```bash
 git clone https://github.com/usuario/agenda-de-cursos.git
 ### 2️⃣ Acessar o Diretório
 cd agenda-de-cursos
@@ -67,21 +66,6 @@ npm install      # ou pip install -r requirements.txt
 npm start        # ou python main.py
 
 ---
-
-## 🧭 Estrutura do Projeto
-
-/agenda-de-cursos
-│
-├── src/                     # Código-fonte principal
-│   ├── models/              # Classes e entidades do sistema
-│   ├── controllers/         # Regras de negócio
-│   ├── views/               # Telas e interface do usuário
-│   └── utils/               # Funções auxiliares
-│
-├── docs/                    # Documentação (UML, requisitos, ABNT)
-├── tests/                   # Testes unitários e funcionais
-├── assets/                  # Ícones, imagens, PDFs gerados
-└── README.md                # Descrição geral do projeto
 
 ## 🧾 Documentação
 
@@ -98,10 +82,10 @@ O projeto inclui os seguintes documentos:
 
 | Integrante                         | Função no Projeto                  |
 | ---------------------------------- | ---------------------------------- |
-| João Marcos França dos Santos Leal | Desenvolvimento e lógica principal |
+| Edilberto Cardoso de Souza Neto    | Desenvolvimento e lógica principal |
 | Bergue Vitor de Souza Filho        | Interface e design                 |
 | Annamel Moura Amâncio              | Banco de dados                     |
-| Edilberto Cardoso de Souza Neto    | Documentação e testes              |
+| João Marcos França dos Santos Leal | Documentação e testes              |
 | Abraão Luiz Ribeiro da Cruz Dantas | Integração e relatórios            |
 
 ---
@@ -138,3 +122,4 @@ O projeto inclui os seguintes documentos:
 
 Este é um projeto acadêmico, desenvolvido para fins educacionais, sem fins lucrativos.
 © 2025 Grupo 5 — Todos os direitos reservados.
+
