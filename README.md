@@ -44,11 +44,11 @@ Além disso, o sistema envia avisos automáticos antes do início de cada curso 
 
 | Categoria | Ferramenta / Tecnologia |
 |------------|------------------------|
-| Linguagem de Programação | Java / Python / C# |
-| Banco de Dados | MySQL / SQLite |
+| Linguagem de Programação | Java |
+| Banco de Dados | MySQL |
 | Front-end | HTML, CSS, JavaScript |
 | Ferramentas de Documentação | Draw.io, StarUML, Lucidchart |
-| Padrões | ABNT, MVC, UML |
+| Padrões | ABNT |
 | Versionamento | Git e GitHub |
 
 ---
@@ -56,7 +56,7 @@ Além disso, o sistema envia avisos automáticos antes do início de cada curso 
 ## ⚙ Como Executar o Projeto
 
 ### ⿡ Clonar o Repositório
-git clone https://github.com/usuario/agenda-de-cursos.git
+git clone https://github.com/ja0leal/Projeto-de-Programa-o_N02_Grupo5
 ### ⿢ Acessar o Diretório
 cd agenda-de-cursos
 ### ⿣ Instalar Dependências
@@ -101,7 +101,7 @@ O projeto inclui os seguintes documentos:
 
 ## 🧠 Boas Práticas Adotadas
 
-- Padrão de projeto MVC (Model-View-Controller)
+- Padrão de projeto MVC 
 - Código documentado e identado
 - Versionamento contínuo no GitHub
 - Testes antes de cada commit
@@ -115,10 +115,5 @@ O projeto inclui os seguintes documentos:
 -  Status: Em desenvolvimento
 -  Entrega Final Prevista: 17/11/2025
 
----
 
-## 📝 Licença
-
-Este é um projeto acadêmico, desenvolvido para fins educacionais, sem fins lucrativos.
-© 2025 Grupo 5 — Todos os direitos reservados.
 
