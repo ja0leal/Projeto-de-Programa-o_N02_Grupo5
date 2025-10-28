@@ -1,23 +1,36 @@
 package br.unit.AgendaCurso.controller;
 
+import br.unit.AgendaCurso.models.Professor;
+import br.unit.AgendaCurso.models.Teste;
+import br.unit.AgendaCurso.repositories.ProfessoresRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-/**
- * Este é um Controller MVC.
- * A anotação @Controller diz ao Spring que esta classe
- * retornará nomes de Views (templates HTML), e não JSON.
- */
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class HomeController {
+    @Autowired
+    private ProfessoresRepository _professoresRepository;
 
-    /**
-     * Mapeia requisições HTTP GET para a raiz do site ("/").
-     */
     @GetMapping("/")
-    public String index() {
-        // Esta string "index" é o nome do arquivo HTML
-        // que o Thymeleaf deve renderizar.
+    public String index(Model model) {
+        List<Professor> pList = _professoresRepository.getTodos();
+        model.addAttribute("Professores", pList);
+
+        return "index";
+    }
+
+    @GetMapping("/Adicionar")
+    public String adicionar(Model model) {
+        Professor professor = new Professor("Roberto");
+        _professoresRepository.addProfessor(professor);
+
+        List<Professor> pList = _professoresRepository.getTodos();
+        model.addAttribute("Professores", pList);
         return "index";
     }
 }

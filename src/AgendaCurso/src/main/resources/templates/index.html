@@ -6,8 +6,20 @@
 </head>
 <body>
 <h1>Bem-vindo!</h1>
+
+<ul>
+    <li th:each="professor : ${Professores}">
+        <span th:text="${professor.nome}"></span>
+    </li>
+</ul>
+
 <p>
-    Vai Corinthians
+    Vai Corinthians!!!
 </p>
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sair (Logout)" />
+</form>
+
 </body>
 </html>
