@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registro</title>
+</head>
+<body>
+
+<div class="container">
+    <form
+            th:action="@{/register/student}"
+            th:object="${registerRequest}"
+            method="post">
+
+        <h2>Registro de Aluno</h2>
+
+        <div>
+            <label>Nome Completo</label>
+            <input type="text" th:field="*{name}">
+
+            <div class="text-danger"
+                 th:if="${#fields.hasErrors('name')}"
+                 th:errors="*{name}">
+                Erro no nome
+            </div>
+        </div>
+
+        <div>
+            <label>E-mail</label>
+            <input type="email" th:field="*{email}">
+
+            <div class="text-danger"
+                 th:if="${#fields.hasErrors('email')}"
+                 th:errors="*{email}">
+                Erro no e-mail
+            </div>
+            <div class="text-danger"
+                 th:if="${#fields.hasGlobalErrors()}">
+                <p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+            </div>
+        </div>
+
+        <div>
+            <label>Senha</label>
+            <input type="password" th:field="*{password}">
+
+            <div class="text-danger"
+                 th:if="${#fields.hasErrors('password')}"
+                 th:errors="*{password}">
+                Erro na senha
+            </div>
+        </div>
+
+        <button type="submit">Registrar</button>
+    </form>
+
+    <p>Já tem uma conta? <a th:href="@{/login}">Faça login aqui</a></p>
+</div>
+
+</body>
+</html>

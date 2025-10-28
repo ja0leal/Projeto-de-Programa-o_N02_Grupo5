@@ -8,7 +8,5 @@ public class AgendaCursoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AgendaCursoApplication.class, args);
-
 	}
-
 }
