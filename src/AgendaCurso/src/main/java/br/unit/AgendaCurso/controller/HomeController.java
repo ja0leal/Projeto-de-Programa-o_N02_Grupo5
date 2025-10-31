@@ -24,13 +24,5 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/Adicionar")
-    public String adicionar(Model model) {
-        Professor professor = new Professor("Roberto");
-        _professoresRepository.addProfessor(professor);
 
-        List<Professor> pList = _professoresRepository.getTodos();
-        model.addAttribute("Professores", pList);
-        return "index";
-    }
 }
