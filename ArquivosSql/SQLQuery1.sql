@@ -1,0 +1,6 @@
+CREATE TABLE Professores(
+	IdProfessor INT IDENTITY(1,1) NOT NULL,
+	Nome VARCHAR(200) NOT NULL
+
+	CONSTRAINT Pk_Professor PRIMARY KEY (IdProfessor)
+)
