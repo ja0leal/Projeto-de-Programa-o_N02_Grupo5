@@ -3,34 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <title>Meu App Spring</title>
-    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 </head>
 <style>
-    .glass{
+    .glass {
         background: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(6.6px);
         -webkit-backdrop-filter: blur(6.6px);
     }
 </style>
-<body th:style="|background-image:url(@{/assets/background.svg});|" class="bg-cover bg-no-repeat bg-fixed">
-    <header class="min-w-full h-10 mt-5 glass grid grid-cols-5 gap-3">
-        <div class="bg-yellow-500 rounded-lg"></div>
-        <div class="rounded-lg col-span-3 text-center content-center">
-            <div class="grid grid-cols-4 gap-3 w-full">
-                <div class="bg-red-500 rounded-lg"></div>
-                <div class="bg-red-500 rounded-lg"></div>
-                <div class="bg-red-500 rounded-lg"></div>
-                <div class="bg-red-500 rounded-lg"></div>
+<body th:style="|background-image:url(@{/assets/background.svg});|" class="bg-cover bg-no-repeat bg-fixed min-h-screen flex flex-col">
+<header class="min-w-full h-10 mt-5 grid grid-cols-5 gap-3 px-10">
+    <div class="w-full h-full flex items-center justify-start space-x-2">
+        <div class="rounded-full p-1 px-2">
+            <i class="text-gray-200 fa fa-solid fa-calendar-days text-xl"></i>
+        </div>
+        <p class="text-gray-200 font-extralight text-xl mx-3">
+            Grupo 5
+        </p>
+    </div>
+    <div class="col-span-3 text-center px-20 h-full glass rounded-lg shadow-lg border border-gray-700">
+        <div class="grid grid-cols-4 gap-3 w-full h-full items-center">
+            <a href="" class="text-gray-200 hover:text-2xl transition-all font-extralight text-xl">Agenda</a>
+            <a href="" class="text-gray-200 hover:text-2xl transition-all font-extralight text-xl">Home</a>
+            <a href="" class="text-gray-200 hover:text-2xl transition-all font-extralight text-xl">Home</a>
+            <a href="" class="text-gray-200 hover:text-2xl transition-all font-extralight text-xl">Sobre</a>
+        </div>
+    </div>
+    <div class="w-full h-full flex items-center justify-end space-x-2">
+        <p class="text-gray-200 font-extralight text-sm mx-3">
+            Edilberto Cardoso
+        </p>
+        <div class="bg-gray-500 rounded-full p-1 px-2">
+            <i class="text-gray-200 fa fa-solid fa-user text-xl"></i>
+        </div>
+    </div>
+</header>
+
+<main class="grid grid-cols-5 w-full gap-3 flex-1 px-10 py-10 ">
+    <div class="h-full">
+    </div>
+    <div class="h-full col-span-3 flex justify-center items-center" >
+        <div class="w-96 h-96 glass rounded-lg shadow-lg border border-gray-700">
+            <div class="h-full w-full justify-center items-start text-center pt-5">
+                <h2 class="font-extralight text-3xl text-gray-200">Bem Vindo!</h2>
             </div>
         </div>
-        <div class="bg-blue-500 ngh rounded-lg"></div>
-    </header>
+    </div>
+    <div class="h-full">
+    </div>
+</main>
 
+<footer class="w-full">
 
-    <main class="flex flex-grow flex-col items-center justify-center px-4 my-40">
-        <div class="w-64 h-64 glass shadow-2xl rounded-lg">
+</footer>
 
-        </div>
-    </main>
 </body>
 </html>
