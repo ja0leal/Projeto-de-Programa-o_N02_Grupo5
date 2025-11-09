@@ -21,6 +21,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Aluno aluno = _alunosRepository.getPorMatricula(username).orElseThrow(() -> new UsernameNotFoundException("Aluno não encontrado"));
 
-        return new User(aluno.getMatricula(), aluno.getSenha(), List.of(new SimpleGrantedAuthority("ROLE_ALUNO")));
+        return new User(aluno.getMatricula(), aluno.getSenha(), List.of(new SimpleGrantedAuthority(aluno.getRole())));
     }
 }
