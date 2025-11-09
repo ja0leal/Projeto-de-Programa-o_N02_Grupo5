@@ -1,35 +1,51 @@
 package br.unit.AgendaCurso.models;
+import java.util.List;
 
 public class Curso {
-    private int id;
+    private int idAluno;
     private String nome;
-    private String descricao;
+    private List<Aluno> Alunos;
+    private List<Disciplina> disciplinas;
 
     public Curso() {
     }
 
-    public Curso(String nome, String descricao) {
+    public Curso(List<Disciplina> disciplinas, List<Aluno> alunos, String nome, int idAluno) {
+        this.disciplinas = disciplinas;
+        Alunos = alunos;
         this.nome = nome;
-        this.descricao = descricao;
+        this.idAluno = idAluno;
+    }
+
+    public int getIdAluno() {
+        return idAluno;
     }
 
     public String getNome() {
         return nome;
     }
 
+    public List<Aluno> getAlunos() {
+        return Alunos;
+    }
+
+    public List<Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
+
+    public void setIdAluno(int idAluno) {
+        this.idAluno = idAluno;
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public void setAlunos(List<Aluno> alunos) {
+        Alunos = alunos;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public int getId() {
-        return id;
+    public void setDisciplinas(List<Disciplina> disciplinas) {
+        this.disciplinas = disciplinas;
     }
 }

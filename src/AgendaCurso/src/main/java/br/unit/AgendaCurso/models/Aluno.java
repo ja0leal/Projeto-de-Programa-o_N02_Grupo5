@@ -1,70 +1,87 @@
 package br.unit.AgendaCurso.models;
 
+import java.util.List;
+
 public class Aluno {
-    private String matricula;
+    private int idAluno;
+    private int idCurso;
     private String nome;
-    private int idade;
-    private String dataNascimento;
+    private String matricula;
+    private String senha;
+    private String role;
     private String email;
-    private String CPF;
+    private Curso curso;
+    private Agenda agenda;
+    private List<Turma> turmas;
+
 
     public Aluno() {
     }
 
-    public Aluno(String matricula, String nome, int idade, String dataNascimento, String email, String CPF) {
-        this.matricula = matricula;
+    public Aluno(int idAluno, String nome, String matricula, String senha, String email, String role, Curso curso) {
+        this.idAluno = idAluno;
         this.nome = nome;
-        this.idade = idade;
-        this.dataNascimento = dataNascimento;
+        this.matricula = matricula;
+        this.senha = senha;
         this.email = email;
-        this.CPF = CPF;
+        this.role = role;
+        this.curso = curso;
+    }
+
+    public int getIdAluno() {
+        return idAluno;
+    }
+    public String getNome() {
+        return nome;
+    }
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getMatricula() {
         return matricula;
     }
-
     public void setMatricula(String matricula) {
         this.matricula = matricula;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
-
-    public String getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(String dataNascimento) {
-        this.dataNascimento = dataNascimento;
     }
 
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getCPF() {
-        return CPF;
+    public String getSenha() {
+        return senha;
+    }
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
+    public String getRole() {
+        return role;
+    }
+    public void setRole(String role) { this.role = role; }
+
+    public Curso getCurso() {
+        return curso;
+    }
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
+
+    public Agenda getAgenda() {
+        return agenda;
+    }
+    public void setAgenda(Agenda agenda) {
+        this.agenda = agenda;
+    }
+
+    public List<Turma> getTurmas() {
+        return turmas;
+    }
+    public void setTurmas(List<Turma> turmas) {
+        this.turmas = turmas;
     }
 }
