@@ -1,78 +1,97 @@
 package br.unit.AgendaCurso.models;
 
 public class Aluno {
-    private int IdAluno;
-    private String Nome;
-    private String Matricula;
-    private String Email;
-    private String Senha;
-    private int IdRole;
-    private int IdCurso;
+    private int idAluno;
+    private String nome;
+    private String matricula;
+    private String email;
+    private String senha;
+    private String role;
+    private int idCurso;
     private Agenda agenda;
+    private Curso curso;
+
+    public Aluno() {
+    }
+
+    public Aluno(String nome, String matricula, String email, String senha, String role, int idCurso) {
+        this.nome = nome;
+        this.matricula = matricula;
+        this.email = email;
+        this.senha = senha;
+        this.role = role;
+        this.idCurso = idCurso;
+    }
 
     public int getIdAluno() {
-        return IdAluno;
-    }
-
-    public void setIdAluno(int idAluno) {
-        IdAluno = idAluno;
-    }
-
-    public void setNome(String nome) {
-        Nome = nome;
-    }
-
-    public void setMatricula(String matricula) {
-        Matricula = matricula;
-    }
-
-    public void setEmail(String email) {
-        Email = email;
-    }
-
-    public void setSenha(String senha) {
-        Senha = senha;
-    }
-
-    public void setIdRole(int idRole) {
-        IdRole = idRole;
-    }
-
-    public void setIdCurso(int idCurso) {
-        IdCurso = idCurso;
-    }
-
-    public void setIdAgenda(int idAgenda) {
-        IdAgenda = idAgenda;
+        return idAluno;
     }
 
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
     public String getMatricula() {
-        return Matricula;
+        return matricula;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public String getSenha() {
-        return Senha;
+        return senha;
     }
 
-    public int getIdRole() {
-        return IdRole;
+    public String getRole() {
+        return role;
     }
 
     public int getIdCurso() {
-        return IdCurso;
+        return idCurso;
     }
 
-    public int getIdAgenda() {
-        return IdAgenda;
+    public Agenda getAgenda() {
+        return agenda;
     }
 
-    private int IdAgenda;
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setIdAluno(int idAluno) {
+        this.idAluno = idAluno;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public void setIdCurso(int idCurso) {
+        this.idCurso = idCurso;
+    }
+
+    public void setAgenda(Agenda agenda) {
+        this.agenda = agenda;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
 }

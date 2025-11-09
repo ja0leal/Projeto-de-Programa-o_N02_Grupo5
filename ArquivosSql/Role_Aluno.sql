@@ -1,0 +1,5 @@
+ALTER TABLE Aluno
+DROP COLUMN IdRole;
+
+ALTER TABLE Aluno
+ADD Role Varchar(20) NOT NULL DEFAULT 'Comum'

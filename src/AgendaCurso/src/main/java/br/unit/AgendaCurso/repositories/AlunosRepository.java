@@ -7,6 +7,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -15,6 +16,8 @@ import java.util.Optional;
 public class AlunosRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public Optional<Aluno> getPorMatricula(String matricula) {
         String sql = "SELECT * FROM Aluno WHERE Matricula = ?";
@@ -25,7 +28,7 @@ public class AlunosRepository {
             a.setMatricula(rs.getString("Matricula"));
             a.setEmail(rs.getString("Email"));
             a.setSenha(rs.getString("Senha"));
-            a.setIdRole(rs.getInt("IdRole"));
+            a.setRole(rs.getString("Role"));
             a.setIdCurso(rs.getInt("IdCurso"));
             return a;
         });
@@ -36,5 +39,12 @@ public class AlunosRepository {
             // 3. Se a exceção ocorrer (nenhum aluno encontrado), retorne vazio
             return Optional.empty();
         }
+    }
+
+    public int addAluno(Aluno aluno) {
+        String sql = "" +
+                "INSERT INTO Aluno (Nome, Matricula, Email, Senha, Role, IdCurso) " +
+                "VALUES (?, ?, ?, ?, ?, ?) ";
+        return jdbcTemplate.update(sql, aluno.getNome(), aluno.getMatricula(), aluno.getEmail(), passwordEncoder.encode(aluno.getSenha()), aluno.getRole(), aluno.getIdCurso());
     }
 }

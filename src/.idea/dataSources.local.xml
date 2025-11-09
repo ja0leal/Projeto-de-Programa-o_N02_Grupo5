@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal" created-in="IU-252.27397.103">
+    <data-source name="AgendaCurso@Pc" uuid="90987888-4821-4247-9dc7-22b3a7302336">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MSSQL" />
+      <user-name>neto</user-name>
+      <schema-mapping />
+    </data-source>
+  </component>
+</project>
