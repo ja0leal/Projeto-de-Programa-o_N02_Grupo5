@@ -10,17 +10,185 @@
 <body th:style="|background-image:url(@{/assets/background.svg});|" class="bg-cover bg-no-repeat bg-fixed min-h-screen flex flex-col">
 <header th:replace="~{layout/layout.html :: header}"></header>
 
-<main class="grid grid-cols-5 w-full gap-3 flex-1 px-10 py-10 ">
-    <div class="h-full">
+<main class="grid grid-cols-5 w-full gap-3 flex-1 px-10 py-10 glass my-5">
+    <div class="h-full bg-gray-200 rounded-lg shadow-lg border border-gray-700">
     </div>
-    <div class="h-full col-span-3 flex justify-center items-center">
-        <div class="w-96 h-96 glass rounded-lg shadow-lg border border-gray-700">
-            <div class="h-full w-full justify-center items-start text-center pt-5">
-                <h2 class="font-extralight text-3xl text-gray-200">Agenda</h2>
-            </div>
+    <div class="h-full col-span-3 flex justify-center items-center bg-gray-200 rounded-lg shadow-lg border border-gray-700">
+        <div class="max-w-7xl mx-auto bg-white shadow-sm rounded-lg overflow-hidden">
+            <table class="min-w-full divide-y divide-gray-200 border-collapse">
+
+                <thead class="bg-gray-50">
+                <tr>
+                    <th class="w-1/7 py-3.5 px-4 text-left text-sm font-semibold text-gray-700">
+                        Horário
+                    </th>
+
+                    <th class="w-1/7 py-3.5 px-4 text-left text-sm font-semibold text-gray-700">
+                        <div class="flex flex-col items-center">
+                            <span>SEG</span>
+                        </div>
+                    </th>
+                    <th class="w-1/7 py-3.5 px-4 text-left text-sm font-semibold text-gray-700">
+                        <div class="flex flex-col items-center">
+                            <span>TER</span>
+                        </div>
+                    </th>
+                    <th class="w-1/7 py-3.5 px-4 text-left text-sm font-semibold text-gray-700">
+                        <div class="flex flex-col items-center">
+                            <span>QUA</span>
+                        </div>
+                    </th>
+                    <th class="w-1/7 py-3.5 px-4 text-left text-sm font-semibold text-gray-700">
+                        <div class="flex flex-col items-center">
+                            <span>QUI</span>
+                        </div>
+                    </th>
+                    <th class="w-1/7 py-3.5 px-4 text-left text-sm font-semibold text-gray-700">
+                        <div class="flex flex-col items-center">
+                            <span>SEX</span>
+                        </div>
+                    </th>
+                    <th class="w-1/7 py-3.5 px-4 text-left text-sm font-semibold text-gray-700">
+                        <div class="flex flex-col items-center">
+                            <span>SÁB</span>
+                        </div>
+                    </th>
+                </tr>
+                </thead>
+
+                <tbody class="divide-y divide-gray-200">
+
+                <tr class="h-20">
+                    <td class="py-4 px-4 align-top text-xs font-medium text-gray-500">16:50 - 17:40</td>
+                    <td class="py-2 px-3 align-top"></td> <td class="py-2 px-3 align-top"> <div class="bg-green-100 border border-green-300 rounded-md p-2 text-xs">
+                    <span class="font-bold text-green-800">F167734-E05</span>
+                    <span class="text-green-700">(OM 💎)</span>
+                    <div class="text-gray-600 mt-1">Sala 25</div>
+                </div>
+                </td>
+                    <td class="py-2 px-3 align-top"></td> <td class="py-2 px-3 align-top"> <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs">
+                    <span class="font-bold text-blue-800">F117544-N02</span>
+                    <div class="text-gray-600 mt-1">Sala 25</div>
+                </div>
+                </td>
+                    <td class="py-2 px-3 align-top"></td> <td class="py-2 px-3 align-top"></td> </tr>
+
+                <tr class="h-20">
+                    <td class="py-4 px-4 align-top text-xs font-medium text-gray-500">17:40 - 18:30</td>
+                    <td class="py-2 px-3 align-top"></td> <td class="py-2 px-3 align-top"> <div class="bg-green-100 border border-green-300 rounded-md p-2 text-xs">
+                    <span class="font-bold text-green-800">F167734-E05</span>
+                    <span class="text-green-700">(OM 💎)</span>
+                    <div class="text-gray-600 mt-1">Sala 25</div>
+                </div>
+                </td>
+                    <td class="py-2 px-3 align-top"></td> <td class="py-2 px-3 align-top"> <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs">
+                    <span class="font-bold text-blue-800">F117544-N02</span>
+                    <div class="text-gray-600 mt-1">Sala 25</div>
+                </div>
+                </td>
+                    <td class="py-2 px-3 align-top"></td> <td class="py-2 px-3 align-top"></td> </tr>
+
+                <tr class="h-10 bg-gray-50">
+                    <td class="py-2 px-4 align-middle text-xs font-medium text-gray-400">18:30 - 18:45</td>
+                    <td class="py-2 px-3 text-center text-xs text-gray-400" colspan="6">Intervalo</td>
+                </tr>
+
+                <tr class="h-20">
+                    <td class="py-4 px-4 align-top text-xs font-medium text-gray-500">18:45 - 19:35</td>
+                    <td class="py-2 px-3 align-top"> <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs">
+                        <span class="font-bold text-blue-800">F117539-N02</span>
+                        <div class="text-gray-600 mt-1">Sala 25</div>
+                    </div>
+                    </td>
+                    <td class="py-2 px-3 align-top"> <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs">
+                        <span class="font-bold text-blue-800">F116220-N04</span>
+                        <div class="text-gray-600 mt-1">Sala 25</div>
+                    </div>
+                    </td>
+                    <td class="py-2 px-3 align-top"> <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs">
+                        <span class="font-bold text-blue-800">F117500-N04</span>
+                        <div class="text-gray-600 mt-1">Sala 28</div>
+                    </div>
+                    </td>
+                    <td class="py-2 px-3 align-top"></td> <td class="py-2 px-3 align-top"></td> <td class="py-2 px-3 align-top"></td> </tr>
+
+                <tr class="h-20">
+                    <td class="py-4 px-4 align-top text-xs font-medium text-gray-500">19:35 - 20:25</td>
+                    <td class="py-2 px-3 align-top"> <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs">
+                        <span class="font-bold text-blue-800">F117539-N02</span>
+                        <div class="text-gray-600 mt-1">Sala 25</div>
+                    </div>
+                    </td>
+                    <td class="py-2 px-3 align-top"> <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs">
+                        <span class="font-bold text-blue-800">F116220-N04</span>
+                        <div class="text-gray-600 mt-1">Sala 25</div>
+                    </div>
+                    </td>
+                    <td class="py-2 px-3 align-top"> <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs">
+                        <span class="font-bold text-blue-800">F117500-N04</span>
+                        <div class="text-gray-600 mt-1">Sala 28</div>
+                    </div>
+                    </td>
+                    <td class="py-2 px-3 align-top"></td> <td class="py-2 px-3 align-top"></td> <td class="py-2 px-3 align-top"></td> </tr>
+
+                <tr class="h-10 bg-gray-50">
+                    <td class="py-2 px-4 align-middle text-xs font-medium text-gray-400">20:25 - 20:35</td>
+                    <td class="py-2 px-3 text-center text-xs text-gray-400" colspan="6">Intervalo</td>
+                </tr>
+
+                <tr class="h-20">
+                    <td class="py-4 px-4 align-top text-xs font-medium text-gray-500">20:35 - 21:25</td>
+                    <td class="py-2 px-3 align-top"> <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs">
+                        <span class="font-bold text-blue-800">F117539-N02</span>
+                        <div class="text-gray-600 mt-1">Sala 25</div>
+                    </div>
+                    </td>
+                    <td class="py-2 px-3 align-top"> <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs">
+                        <span class="font-bold text-blue-800">F116220-N04</span>
+                        <div class="text-gray-600 mt-1">Sala 25</div>
+                    </div>
+                    </td>
+                    <td class="py-2 px-3 align-top"> <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs">
+                        <span class="font-bold text-blue-800">F117500-N04</span>
+                        <div class="text-gray-600 mt-1">Sala 28</div>
+                    </div>
+                    </td>
+                    <td class="py-2 px-3 align-top"></td> <td class="py-2 px-3 align-top"> <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs">
+                    <span class="font-bold text-blue-800">F117506-N03</span>
+                    <div class="text-gray-600 mt-1">Sala 22</div>
+                </div>
+                </td>
+                    <td class="py-2 px-3 align-top"></td> </tr>
+
+                <tr class="h-20">
+                    <td class="py-4 px-4 align-top text-xs font-medium text-gray-500">21:25 - 22:15</td>
+                    <td class="py-2 px-3 align-top"> <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs">
+                        <span class="font-bold text-blue-800">F117539-N02</span>
+                        <div class="text-gray-600 mt-1">Sala 25</div>
+                    </div>
+                    </td>
+                    <td class="py-2 px-3 align-top"> <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs">
+                        <span class="font-bold text-blue-800">F116220-N04</span>
+                        <div class="text-gray-600 mt-1">Sala 25</div>
+                    </div>
+                    </td>
+                    <td class="py-2 px-3 align-top"> <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs">
+                        <span class="font-bold text-blue-800">F117500-N04</span>
+                        <div class="text-gray-600 mt-1">Sala 28</div>
+                    </div>
+                    </td>
+                    <td class="py-2 px-3 align-top"></td> <td class="py-2 px-3 align-top"> <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs">
+                    <span class="font-bold text-blue-800">F117506-N03</span>
+                    <div class="text-gray-600 mt-1">Sala 22</div>
+                </div>
+                </td>
+                    <td class="py-2 px-3 align-top"></td> </tr>
+
+                </tbody>
+            </table>
         </div>
     </div>
-    <div class="h-full">
+    <div class="h-full bg-gray-200 rounded-lg shadow-lg border border-gray-700">
     </div>
 </main>
 
