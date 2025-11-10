@@ -25,6 +25,10 @@
             <div class="p-4">
                 <div class="rounded-md border border-gray-100 grid grid-cols-5 items-center">
 
+                    <p class="text-xs col-span-5 text-red-600" id="erroInputNome">
+
+                    </p>
+
                     <div class="col-span-3">
                         <input
                                 id="inputNome"
@@ -44,6 +48,9 @@
                             <span>Adicionar</span>
                         </button>
                     </div>
+
+                    <p class="text-xs col-span-5 mt-5 text-green-600" id="sucessInputNome">
+                    </p>
                 </div>
             </div>
         </div>
@@ -125,12 +132,12 @@
                     </table>
                 </div>
 
-<!--                <div class="mt-4 flex items-center justify-between text-sm text-gray-600">-->
-<!--                    <div th:text="'Mostrando ' + ${pageable.offset + 1} + ' - ' + ${pageable.offset + professores.size()} + ' de ' + ${pageable.totalElements}">-->
-<!--                        Mostrando X de Y-->
-<!--                    </div>-->
-<!--                    <div></div>-->
-<!--                </div>-->
+                <!--                <div class="mt-4 flex items-center justify-between text-sm text-gray-600">-->
+                <!--                    <div th:text="'Mostrando ' + ${pageable.offset + 1} + ' - ' + ${pageable.offset + professores.size()} + ' de ' + ${pageable.totalElements}">-->
+                <!--                        Mostrando X de Y-->
+                <!--                    </div>-->
+                <!--                    <div></div>-->
+                <!--                </div>-->
             </div>
         </div>
     </div>
@@ -139,7 +146,5 @@
 
 <footer th:replace="~{layout/layout.html :: footer}"></footer>
 </body>
-<script>
-    
-</script>
+<script type="module" th:src="@{/js/professores.js}"></script>
 </html>
