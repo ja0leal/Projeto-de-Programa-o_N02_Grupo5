@@ -7,6 +7,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Repository
 public class TurmaRepository {
     @Autowired
@@ -33,5 +36,19 @@ public class TurmaRepository {
         });
 
         return jdbcTemplate.queryForObject(sql, rowMapper, id);
+    }
+
+    public List<Turma> getPorAlunoId(int id){
+        String sql =
+                "SELECT " +
+                " IdTurma " +
+                "FROM AlunoTurma " +
+                "WHERE IdAluno = ?";
+
+        RowMapper<Turma> rowMapper = (rs, rowNum) -> {
+            return getPorId(rs.getInt("IdTurma"));
+        };
+
+        return jdbcTemplate.query(sql, rowMapper, id);
     }
 }

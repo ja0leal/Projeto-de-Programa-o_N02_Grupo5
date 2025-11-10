@@ -7,6 +7,8 @@ import java.time.LocalTime;
 public class HorarioLinha {
     private LocalTime horaInicio;
     private String horarioVisual;
+    private boolean visivel;
+    private boolean intervalo;
     private Horario domingo;
     private Horario segunda;
     private Horario terca;
@@ -18,9 +20,10 @@ public class HorarioLinha {
     public HorarioLinha() {
     }
 
-    public HorarioLinha(LocalTime horaInicio, String horarioVisual, Horario domingo, Horario segunda, Horario terca, Horario quarta, Horario quinta, Horario sexta, Horario sabado) {
+    public HorarioLinha(LocalTime horaInicio, String horarioVisual, boolean visivel, Horario domingo, Horario segunda, Horario terca, Horario quarta, Horario quinta, Horario sexta, Horario sabado) {
         this.horaInicio = horaInicio;
         this.horarioVisual = horarioVisual;
+        this.visivel = visivel;
         this.domingo = domingo;
         this.segunda = segunda;
         this.terca = terca;
@@ -30,12 +33,34 @@ public class HorarioLinha {
         this.sabado = sabado;
     }
 
+    public HorarioLinha(LocalTime horaInicio, String horarioVisual, boolean visivel, boolean intervalo, Horario domingo, Horario segunda, Horario terca, Horario quarta, Horario quinta, Horario sexta, Horario sabado) {
+        this.horaInicio = horaInicio;
+        this.horarioVisual = horarioVisual;
+        this.visivel = visivel;
+        this.intervalo = intervalo;
+        this.domingo = domingo;
+        this.segunda = segunda;
+        this.terca = terca;
+        this.quarta = quarta;
+        this.quinta = quinta;
+        this.sexta = sexta;
+        this.sabado = sabado;
+    }
+
+    public boolean isIntervalo() {
+        return intervalo;
+    }
+
     public LocalTime getHoraInicio() {
         return horaInicio;
     }
 
     public String getHorarioVisual() {
         return horarioVisual;
+    }
+
+    public boolean isVisivel() {
+        return visivel;
     }
 
     public Horario getDomingo() {
@@ -100,5 +125,13 @@ public class HorarioLinha {
 
     public void setSabado(Horario sabado) {
         this.sabado = sabado;
+    }
+
+    public void setVisivel(boolean visivel) {
+        this.visivel = visivel;
+    }
+
+    public void setIntervalo(boolean intervalo) {
+        this.intervalo = intervalo;
     }
 }

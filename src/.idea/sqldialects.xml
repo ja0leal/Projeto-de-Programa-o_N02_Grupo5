@@ -2,5 +2,6 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/AgendaCurso/src/main/java/br/unit/AgendaCurso/repositories/DiciplinaRepository.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/AgendaCurso/src/main/java/br/unit/AgendaCurso/repositories/HorarioRepository.java" dialect="GenericSQL" />
   </component>
 </project>

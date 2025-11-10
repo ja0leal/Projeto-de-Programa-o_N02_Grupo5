@@ -1,0 +1,15 @@
+ALTER TABLE Horario
+DROP CONSTRAINT Fk_Horario_Diciplina
+GO
+
+ALTER TABLE Horario
+DROP COLUMN IdDiciplina
+GO
+
+ALTER TABLE Horario
+ADD IdTurma INT NOT NULL DEFAULT 1,
+CONSTRAINT Fk_Horario_Turma FOREIGN KEY (IdTurma)
+	REFERENCES Turma(IdTurma)
+
+
+SELECT * FROM Horario
