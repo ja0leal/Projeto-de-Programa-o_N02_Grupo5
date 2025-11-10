@@ -81,11 +81,11 @@ O projeto inclui os seguintes documentos:
 
 | Integrante                         | Função no Projeto                  |
 | ---------------------------------- | ---------------------------------- |
-| Edilberto Cardoso de Souza Neto    | Desenvolvimento e lógica principal |
-| Bergue Vitor de Souza Filho        | Interface e design                 |
-| Annamel Moura Amâncio              | Banco de dados                     |
-| João Marcos França dos Santos Leal | Documentação e testes              |
-| Abraão Luiz Ribeiro da Cruz Dantas | Integração e relatórios            |
+| Edilberto Cardoso de Souza Neto    | Repositorios e Controllers         |
+| Bergue Vitor de Souza Filho        | Telas                              |
+| Annamel Moura Amâncio              | API's Externas                     |
+| João Marcos França dos Santos Leal | Banco de Dados                     |
+| Abraão Luiz Ribeiro da Cruz Dantas | Modelos                            |
 
 ---
 
@@ -114,6 +114,7 @@ O projeto inclui os seguintes documentos:
 -  Fase Atual: Implementação e Testes
 -  Status: Em desenvolvimento
 -  Entrega Final Prevista: 17/11/2025
+
 
 
 
