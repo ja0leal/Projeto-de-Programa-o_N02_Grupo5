@@ -18,7 +18,7 @@ class AlunosController {
 
     @GetMapping("/Add")
     public String index(Model model) {
-        Aluno aluno = new  Aluno("Marcos Eduardo", "22025000001", "eduardo@gmail.com", "1234", "Comum", 1){};
+        Aluno aluno = new  Aluno("Edilberto Cardoso", "22025000002", "edilbertoneto980@gmail.com", "1234", "admin", 1){};
         _alunosRepository.addAluno(aluno);
         return "redirect:/";
     }

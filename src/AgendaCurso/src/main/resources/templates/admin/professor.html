@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Meu App Spring</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+</head>
+<style th:replace="~{layout/layout.html :: styleGlass}"></style>
+<body th:style="|background-image:url(@{/assets/background.svg});|"
+      class="bg-cover bg-no-repeat bg-fixed min-h-screen flex flex-col">
+<header th:replace="~{layout/layout.html :: header}"></header>
+
+<main class="grid grid-cols-6 w-full gap-3 flex-1 px-10 py-10 my-5">
+
+    <div class="h-full col-span-2 bg-gray-200 rounded-lg shadow-lg border border-gray-700 p-6">
+        <div class="w-full bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-5 border-b border-gray-100">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800">Professores</h3>
+                    <p class="text-sm text-gray-500">Área de Administração — Adicionar professor</p>
+                </div>
+            </div>
+
+            <div class="p-4">
+                <div class="rounded-md border border-gray-100 grid grid-cols-5 items-center">
+
+                    <div class="col-span-3">
+                        <input
+                                id="inputNome"
+                                type="text"
+                                name="q"
+                                placeholder="Nome..."
+                                class="w-full pl-3 pr-1 py-2 rounded-md border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
+                                aria-label="Adicionar Professor"
+                        />
+                    </div>
+
+                    <div class="text-right col-span-2">
+                        <button type="button"
+                                id="btnAdicionar"
+                                class="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-indigo-600 text-white text-sm font-medium shadow-sm hover:bg-indigo-700 transition">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>Adicionar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="h-full col-span-4 bg-gray-100 rounded-lg shadow-lg border border-gray-200 p-6">
+        <div class="w-full max-w-5xl bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-5 border-b border-gray-100">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800">Professores</h3>
+                    <p class="text-sm text-gray-500">Área de Administração — lista de professores</p>
+                </div>
+
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <div class="relative w-full sm:w-64">
+                        <input
+                                type="search"
+                                name="q"
+                                placeholder="Buscar por nome ou id..."
+                                class="w-full pl-10 pr-3 py-2 rounded-md border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
+                                aria-label="Buscar professores"
+                        />
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-4">
+                <div class="overflow-x-auto rounded-md border border-gray-100">
+                    <table class="table-fixed w-full text-sm">
+                        <thead class="bg-white">
+                        <tr>
+                            <th class="w-16 px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">#</th>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nome</th>
+                            <th class="w-36 px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">Ações</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr th:each="professor : ${professores}" class="odd:bg-white even:bg-gray-50">
+                            <td class="px-4 py-3 text-gray-700" th:text="${professor.getIdProfessor()}">Id Professor
+                            </td>
+                            <td class="px-4 py-3 text-gray-900 font-medium" th:text="${professor.getNome()}">Nome
+                                Professor
+                            </td>
+
+                            <td class="px-4 py-3 text-right">
+                                <div class="inline-flex items-center gap-2">
+                                    <button type="button"
+                                            class="view-btn inline-flex items-center justify-center w-8 h-8 rounded-md border border-gray-200 hover:bg-gray-50"
+                                            th:attr="data-id=${professor.getIdProfessor()}"
+                                            title="Visualizar">
+                                        <i class="fa-regular fa-eye"></i>
+                                    </button>
+
+                                    <button type="button"
+                                            class="edit-btn inline-flex items-center justify-center w-8 h-8 rounded-md border border-gray-200 hover:bg-gray-50"
+                                            th:attr="data-id=${professor.getIdProfessor()}"
+                                            title="Editar">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </button>
+
+                                    <button type="button"
+                                            class="delete-btn inline-flex items-center justify-center w-8 h-8 rounded-md border border-red-200 text-red-600 hover:bg-red-50"
+                                            th:attr="data-id=${professor.getIdProfessor()}"
+                                            title="Excluir">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr th:if="${#lists.isEmpty(professores)}">
+                            <td colspan="3" class="px-4 py-8 text-center text-sm text-gray-500">
+                                Nenhum professor encontrado.
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+<!--                <div class="mt-4 flex items-center justify-between text-sm text-gray-600">-->
+<!--                    <div th:text="'Mostrando ' + ${pageable.offset + 1} + ' - ' + ${pageable.offset + professores.size()} + ' de ' + ${pageable.totalElements}">-->
+<!--                        Mostrando X de Y-->
+<!--                    </div>-->
+<!--                    <div></div>-->
+<!--                </div>-->
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer th:replace="~{layout/layout.html :: footer}"></footer>
+</body>
+<script>
+    
+</script>
+</html>
