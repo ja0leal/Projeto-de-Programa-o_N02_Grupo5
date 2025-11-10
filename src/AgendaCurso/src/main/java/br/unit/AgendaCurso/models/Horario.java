@@ -1,35 +1,33 @@
 package br.unit.AgendaCurso.models;
 
-import jdk.jfr.Timespan;
-
 import java.time.LocalTime;
 
 public class Horario {
     private int idHorario;
-    private int idDiciplina;
+    private int idTurma;
     private LocalTime horarioInicio;
     private String sala;
     private int diaDaSemana;
-    private Diciplina diciplina;
+    private Turma turma;
 
     public Horario() {
     }
 
-    public Horario(int idHorario, int idDiciplina, LocalTime horarioInicio, String sala, int diaDaSemana, Diciplina diciplina) {
+    public Horario(int idHorario, int idTurma, LocalTime horarioInicio, String sala, int diaDaSemana, Turma turma) {
         this.idHorario = idHorario;
-        this.idDiciplina = idDiciplina;
+        this.idTurma = idTurma;
         this.horarioInicio = horarioInicio;
         this.sala = sala;
         this.diaDaSemana = diaDaSemana;
-        this.diciplina = diciplina;
+        this.turma = turma;
     }
 
     public int getIdHorario() {
         return idHorario;
     }
 
-    public int getIdDiciplina() {
-        return idDiciplina;
+    public int getIdTurma() {
+        return idTurma;
     }
 
     public LocalTime getHorarioInicio() {
@@ -44,16 +42,16 @@ public class Horario {
         return diaDaSemana;
     }
 
-    public Diciplina getDiciplina() {
-        return diciplina;
+    public Turma getTurma() {
+        return turma;
     }
 
     public void setIdHorario(int idHorario) {
         this.idHorario = idHorario;
     }
 
-    public void setIdDiciplina(int idDiciplina) {
-        this.idDiciplina = idDiciplina;
+    public void setIdTurma(int idTurma) {
+        this.idTurma = idTurma;
     }
 
     public void setHorarioInicio(LocalTime horarioInicio) {
@@ -68,7 +66,7 @@ public class Horario {
         this.diaDaSemana = diaDaSemana;
     }
 
-    public void setDiciplina(Diciplina diciplina) {
-        this.diciplina = diciplina;
+    public void setTurma(Turma turma) {
+        this.turma = turma;
     }
 }
