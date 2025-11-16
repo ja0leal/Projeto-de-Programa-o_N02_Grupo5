@@ -45,5 +45,13 @@ public class ProfessoresRepository {
         return jdbcTemplate.update(sql, professor.getNome());
     }
 
+    public int deleteProfessor(int id){
+        String sql =
+                """
+                DELETE FROM Professores \s
+                WHERE idProfessor = ?;
+               \s""";
 
+        return jdbcTemplate.update(sql, id);
+    }
 }

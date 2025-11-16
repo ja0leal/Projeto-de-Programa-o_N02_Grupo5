@@ -46,4 +46,28 @@ public class Turma {
     public Professor getProfessor() {
         return professor;
     }
+
+    public void setIdTurma(int idTurma) {
+        this.idTurma = idTurma;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setIdDiciplina(int idDiciplina) {
+        this.idDiciplina = idDiciplina;
+    }
+
+    public void setIdProfessor(int idProfessor) {
+        this.idProfessor = idProfessor;
+    }
+
+    public void setDiciplina(Diciplina diciplina) {
+        this.diciplina = diciplina;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
+    }
 }

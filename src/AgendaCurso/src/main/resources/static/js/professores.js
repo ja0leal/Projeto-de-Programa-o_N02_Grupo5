@@ -12,10 +12,46 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputNome = document.getElementById("inputNome");
     const erroInputNome = document.getElementById("erroInputNome");
     const sucessInputNome = document.getElementById("sucessInputNome");
+    const btnsDeletar = document.querySelectorAll(".btnDeletar");
     if (!(inputNome instanceof HTMLInputElement) || !(btnAdicionar instanceof HTMLButtonElement)) {
         console.error('Falha ao carregar elementos do formulário de professor.');
         return;
     }
+    btnsDeletar.forEach(button => {
+        if (!(button instanceof HTMLButtonElement)) {
+            return;
+        }
+        button.addEventListener("click", () => __awaiter(void 0, void 0, void 0, function* () {
+            const professorId = button.dataset.id;
+            if (!professorId) {
+                console.error('Falha ao carregar elementos do professor.');
+                return;
+            }
+            ;
+            const data = {
+                nome: professorId
+            };
+            try {
+                const response = yield fetch('/api/professor/delete', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                if (response.ok) {
+                    window.location.reload();
+                }
+            }
+            catch (error) {
+                console.error('Falha ao adicionar professor:', error);
+                if (error instanceof Error) {
+                    alert(`Ocorreu um erro: ${error.message}`);
+                }
+                else {
+                    alert('Ocorreu um erro desconhecido.');
+                }
+            }
+        }));
+    });
     btnAdicionar.addEventListener("click", () => __awaiter(void 0, void 0, void 0, function* () {
         inputNome.disabled = true;
         btnAdicionar.disabled = true;

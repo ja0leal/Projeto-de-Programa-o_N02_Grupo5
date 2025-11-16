@@ -24,4 +24,11 @@ public class ProfessorController {
 
         return new ProfessorResponse(request.getNome(), _professoresRepository.addProfessor(professor));
     }
+
+    @PostMapping("/delete")
+    public ProfessorResponse delete(@RequestBody ProfessorRequest request){
+        int id = Integer.parseInt(request.getNome());
+        System.out.println(_professoresRepository.deleteProfessor(id));
+        return new ProfessorResponse(request.getNome(), 1);
+    }
 }

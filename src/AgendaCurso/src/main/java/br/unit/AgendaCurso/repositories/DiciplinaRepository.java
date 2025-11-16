@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class DiciplinaRepository {
     @Autowired
@@ -27,5 +29,19 @@ public class DiciplinaRepository {
         });
 
         return jdbcTemplate.queryForObject(sql, rowMapper, id);
+    }
+
+    public List<Diciplina> getTodos(){
+        String sql = "SELECT * FROM Diciplina";
+
+        RowMapper<Diciplina> rowMapper = ((rs, rowNum) -> {
+            Diciplina d = new Diciplina(
+                    rs.getInt("IdDiciplina"),
+                    rs.getString("Nome")
+            );
+            return d;
+        });
+
+        return jdbcTemplate.query(sql, rowMapper);
     }
 }

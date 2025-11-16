@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Meu App Spring</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+</head>
+<style th:replace="~{layout/layout.html :: styleGlass}"></style>
+<body th:style="|background-image:url(@{/assets/background.svg});|"
+      class="bg-cover bg-no-repeat bg-fixed min-h-screen flex flex-col">
+<header th:replace="~{layout/layout.html :: header}"></header>
+
+<main class="grid grid-cols-6 w-full gap-3 flex-1 px-10 py-10 my-5">
+
+    <div class="h-full col-span-2 bg-gray-200 rounded-lg shadow-lg border border-gray-700 p-6">
+        <div class="w-full bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-5 border-b border-gray-100">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800">Detalhes: <span
+                            th:text="${turma.getNome()}"></span></h3>
+                    <p class="text-sm text-gray-500">Área de Administração — Informações</p>
+                </div>
+            </div>
+
+            <div class="p-4">
+                <dl class="mt-6 grid grid-cols-6 gap-y-6">
+                    <div class="col-span-3">
+                        <dt class="text-sm font-medium text-gray-500">Id:</dt>
+                        <dd class="mt-1 text-lg font-semibold text-gray-900"
+                            th:text="${turma.getIdProfessor()}"></dd>
+                    </div>
+                    <div class="col-span-3">
+                        <dt class="text-sm font-medium text-gray-500">Nome da Turma:</dt>
+                        <dd class="mt-1 text-lg font-semibold text-gray-900" th:text="${turma.getNome()}"></dd>
+                    </div>
+                    <div class="col-span-3">
+                        <dt class="text-sm font-medium text-gray-500">Diciplina:</dt>
+                        <dd class="mt-1 text-lg font-semibold text-gray-900" th:text="${turma.getDiciplina().getNome()}"></dd>
+                    </div>
+                    <div class="col-span-3">
+                        <dt class="text-sm font-medium text-gray-500">Professor:</dt>
+                        <dd class="mt-1 text-lg font-semibold text-gray-900" th:text="${turma.getProfessor().getNome()}"></dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <div class="h-full col-span-4 bg-gray-100 rounded-lg shadow-lg border border-gray-200 p-6">
+        <div class="w-full max-w-5xl bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-5 border-b border-gray-100">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800">Detalhes: <span
+                            th:text="${turma.getNome()}"></span></h3>
+                    <p class="text-sm text-gray-500">Área de Administração — Horarios da Turma</p>
+                </div>
+            </div>
+
+            <div class="p-4">
+                <div class="w-full mx-auto bg-white shadow-sm overflow-hidden">
+                    <table class="min-w-full divide-y divide-gray-200 border-collapse table-fixed">
+
+                        <thead class="bg-gray-50">
+                        <tr>
+                            <th class="w-1/6 py-3.5 px-4 text-left text-sm font-semibold text-gray-700">
+                                Horário
+                            </th>
+
+                            <th class="w-1/6 py-3.5 px-4 text-center text-sm font-semibold text-gray-700">
+                                <div class="flex flex-col items-center">
+                                    <span>SEG</span>
+                                </div>
+                            </th>
+                            <th class="w-1/6 py-3.5 px-4 text-center text-sm font-semibold text-gray-700">
+                                <div class="flex flex-col items-center">
+                                    <span>TER</span>
+                                </div>
+                            </th>
+                            <th class="w-1/6 py-3.5 px-4 text-center text-sm font-semibold text-gray-700">
+                                <div class="flex flex-col items-center">
+                                    <span>QUA</span>
+                                </div>
+                            </th>
+                            <th class="w-1/6 py-3.5 px-4 text-center text-sm font-semibold text-gray-700">
+                                <div class="flex flex-col items-center">
+                                    <span>QUI</span>
+                                </div>
+                            </th>
+                            <th class="w-1/6 py-3.5 px-4 text-center text-sm font-semibold text-gray-700">
+                                <div class="flex flex-col items-center">
+                                    <span>SEX</span>
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+
+                        <tbody class="divide-y divide-gray-200">
+
+                        <tr class="h-20"
+                            th:each="linha : ${horariosLinha}"
+                            th:if="${linha.isVisivel()}">
+                            <td class="py-4 px-4 align-top text-xs font-medium text-gray-500"
+                                th:text="${linha.getHorarioVisual()}">00:00 - 00:00
+                            </td>
+
+                            <td class="py-2 px-3 align-top">
+                                <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs h-full overflow-y-auto break-words"
+                                     th:if="${linha.getSegunda() != null}">
+                    <span class="font-bold text-blue-800"
+                          th:text="${linha.getSegunda()?.getTurma()?.getDiciplina()?.getNome()}">Nome da Diciplina</span>
+                                    <div class="text-gray-600 mt-1">
+                                        <span th:text="${linha.getSegunda()?.getSala()}">Sala</span>
+                                        <span> | </span>
+                                        <span th:text="${linha.getSegunda()?.getTurma()?.getProfessor()?.getNome()}">Sala</span>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td class="py-2 px-3 align-top">
+                                <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs h-full overflow-y-auto break-words"
+                                     th:if="${linha.getTerca() != null}">
+                    <span class="font-bold text-blue-800"
+                          th:text="${linha.getTerca()?.getTurma()?.getDiciplina()?.getNome()}">Nome da Diciplina</span>
+                                    <div class="text-gray-600 mt-1">
+                                        <span th:text="${linha.getTerca()?.getSala()}">Sala</span>
+                                        <span> | </span>
+                                        <span th:text="${linha.getTerca()?.getTurma()?.getProfessor()?.getNome()}">Sala</span>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td class="py-2 px-3 align-top">
+                                <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs h-full overflow-y-auto break-words"
+                                     th:if="${linha.getQuarta() != null}">
+                    <span class="font-bold text-blue-800"
+                          th:text="${linha.getQuarta()?.getTurma()?.getDiciplina()?.getNome()}">Nome da Diciplina</span>
+                                    <div class="text-gray-600 mt-1">
+                                        <span th:text="${linha.getQuarta()?.getSala()}">Sala</span>
+                                        <span> | </span>
+                                        <span th:text="${linha.getQuarta()?.getTurma()?.getProfessor()?.getNome()}">Sala</span>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td class="py-2 px-3 align-top">
+                                <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs h-full overflow-y-auto break-words"
+                                     th:if="${linha.getQuinta() != null}">
+                    <span class="font-bold text-blue-800"
+                          th:text="${linha.getQuinta()?.getTurma()?.getDiciplina()?.getNome()}">Nome da Diciplina</span>
+                                    <div class="text-gray-600 mt-1">
+                                        <span th:text="${linha.getQuinta()?.getSala()}">Sala</span>
+                                        <span> | </span>
+                                        <span th:text="${linha.getQuinta()?.getTurma()?.getProfessor()?.getNome()}">Sala</span>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td class="py-2 px-3 align-top">
+                                <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs h-full overflow-y-auto break-words"
+                                     th:if="${linha.getSexta() != null}">
+                    <span class="font-bold text-blue-800"
+                          th:text="${linha.getSexta()?.getTurma()?.getDiciplina()?.getNome()}">Nome da Diciplina</span>
+                                    <div class="text-gray-600 mt-1">
+                                        <span th:text="${linha.getSexta()?.getSala()}">Sala</span>
+                                        <span> | </span>
+                                        <span th:text="${linha.getSexta()?.getTurma()?.getProfessor()?.getNome()}">Sala</span>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td class="py-2 px-3 align-top">
+                                <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs h-full overflow-y-auto break-words"
+                                     th:if="${linha.getSabado() != null}">
+                    <span class="font-bold text-blue-800"
+                          th:text="${linha.getSabado()?.getTurma()?.getDiciplina()?.getNome()}">Nome da Diciplina</span>
+                                    <div class="text-gray-600 mt-1">
+                                        <span th:text="${linha.getSabado()?.getSala()}">Sala</span>
+                                        <span> | </span>
+                                        <span th:text="${linha.getSabado()?.getTurma()?.getProfessor()?.getNome()}">Sala</span>
+                                    </div>
+                                </div>
+                            </td>
+
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{layout/layout.html :: footer}"></footer>
+</body>
+<script type="module" th:src="@{/js/professores.js}"></script>
+</html>
