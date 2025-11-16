@@ -56,7 +56,7 @@ public class AgendaController {
         }
 
         model.addAttribute("horariosLinha", horariosLinha);
-
+        model.addAttribute("turmas", turmas);
         return "agenda/index";
     }
 

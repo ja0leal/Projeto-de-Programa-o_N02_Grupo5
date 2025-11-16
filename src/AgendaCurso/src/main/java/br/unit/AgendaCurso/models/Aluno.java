@@ -23,6 +23,18 @@ public class Aluno {
         this.idCurso = idCurso;
     }
 
+    public Aluno(int idAluno, String nome, String matricula, String email, String senha, String role, int idCurso, Agenda agenda, Curso curso) {
+        this.idAluno = idAluno;
+        this.nome = nome;
+        this.matricula = matricula;
+        this.email = email;
+        this.senha = senha;
+        this.role = role;
+        this.idCurso = idCurso;
+        this.agenda = agenda;
+        this.curso = curso;
+    }
+
     public int getIdAluno() {
         return idAluno;
     }

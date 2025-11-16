@@ -18,7 +18,7 @@ public class ProfessorController {
     private ProfessoresRepository _professoresRepository;
 
     @PostMapping("/add")
-    public ProfessorResponse add(@RequestBody ProfessorRequest request){
+    public ProfessorResponse add(@RequestBody ProfessorRequest request) {
         Professor professor = new Professor();
         professor.setNome(request.getNome());
 
@@ -26,9 +26,13 @@ public class ProfessorController {
     }
 
     @PostMapping("/delete")
-    public ProfessorResponse delete(@RequestBody ProfessorRequest request){
+    public ProfessorResponse delete(@RequestBody ProfessorRequest request) {
         int id = Integer.parseInt(request.getNome());
-        System.out.println(_professoresRepository.deleteProfessor(id));
+        int qtdTurma = _professoresRepository.countTurmas(id);
+        if (qtdTurma > 0) {
+            return new ProfessorResponse(request.getNome(), 1);
+        }
+        _professoresRepository.deleteProfessor(id);
         return new ProfessorResponse(request.getNome(), 1);
     }
 }

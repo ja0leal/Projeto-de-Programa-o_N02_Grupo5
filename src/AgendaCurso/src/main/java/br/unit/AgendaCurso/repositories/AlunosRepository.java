@@ -1,6 +1,7 @@
 package br.unit.AgendaCurso.repositories;
 
 import br.unit.AgendaCurso.models.Aluno;
+import br.unit.AgendaCurso.models.Diciplina;
 import br.unit.AgendaCurso.models.Professor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -10,6 +11,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -39,6 +41,31 @@ public class AlunosRepository {
             // 3. Se a exceção ocorrer (nenhum aluno encontrado), retorne vazio
             return Optional.empty();
         }
+    }
+
+    public List<Aluno> getPorTurmaId(int idTurma) {
+        String sql = """
+                SELECT
+                	a.*
+                FROM AlunoTurma at
+                LEFT JOIN Aluno a
+                	on a.IdAluno = at.IdAluno
+                WHERE IdTurma = ?
+                """;
+
+        RowMapper<Aluno> rowMapper = ((rs, rowNum) -> {
+            Aluno a = new Aluno();
+            a.setIdAluno(rs.getInt("IdAluno"));
+            a.setNome(rs.getString("Nome"));
+            a.setMatricula(rs.getString("Matricula"));
+            a.setEmail(rs.getString("Email"));
+            a.setSenha(rs.getString("Senha"));
+            a.setRole(rs.getString("Role"));
+            a.setIdCurso(rs.getInt("IdCurso"));
+            return a;
+        });
+
+        return jdbcTemplate.query(sql, rowMapper,  idTurma);
     }
 
     public int addAluno(Aluno aluno) {

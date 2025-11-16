@@ -122,6 +122,9 @@ class AdminController {
 
         model.addAttribute("horariosLinha", horariosLinha);
 
+        List<Aluno> alunos = _alunosRepository.getPorTurmaId(id);
+        model.addAttribute("alunos", alunos);
+
         return "admin/turmaDetalhes";
     }
 

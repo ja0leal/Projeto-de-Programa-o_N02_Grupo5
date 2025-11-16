@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,5 +54,15 @@ public class ProfessoresRepository {
                \s""";
 
         return jdbcTemplate.update(sql, id);
+    }
+
+    public int countTurmas(int idProfessor){
+        String sql =    """
+                SELECT
+                	COUNT(IdTurma)
+                FROM Turma
+                WHERE IdProfessor = ?
+                """;
+        return jdbcTemplate.queryForObject(sql, int.class, idProfessor);
     }
 }
