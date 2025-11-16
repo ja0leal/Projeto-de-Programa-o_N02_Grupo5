@@ -75,12 +75,12 @@
                             </td>
                             <td class="px-4 py-3 text-right">
                                 <div class="inline-flex items-center gap-2">
-                                    <button type="button"
-                                            class="view-btn inline-flex items-center justify-center w-8 h-8 rounded-md border border-gray-200 hover:bg-gray-50"
-                                            th:attr="data-id=${turma.getIdTurma()}"
-                                            title="Visualizar">
+                                    <a th:href="@{/Admim/TurmaDetalhes/{id}(id=${turma.getIdTurma()})}"
+                                       class="view-btn inline-flex items-center justify-center w-8 h-8 rounded-md border border-gray-200 hover:bg-gray-50"
+                                       title="Visualizar">
+
                                         <i class="fa-regular fa-eye"></i>
-                                    </button>
+                                    </a>
 
                                     <button type="button"
                                             class="edit-btn inline-flex items-center justify-center w-8 h-8 rounded-md border border-gray-200 hover:bg-gray-50"

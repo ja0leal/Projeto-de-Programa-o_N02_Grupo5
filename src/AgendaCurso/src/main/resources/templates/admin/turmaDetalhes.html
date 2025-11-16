@@ -36,14 +36,105 @@
                     </div>
                     <div class="col-span-3">
                         <dt class="text-sm font-medium text-gray-500">Diciplina:</dt>
-                        <dd class="mt-1 text-lg font-semibold text-gray-900" th:text="${turma.getDiciplina().getNome()}"></dd>
+                        <dd class="mt-1 text-lg font-semibold text-gray-900"
+                            th:text="${turma.getDiciplina().getNome()}"></dd>
                     </div>
                     <div class="col-span-3">
                         <dt class="text-sm font-medium text-gray-500">Professor:</dt>
-                        <dd class="mt-1 text-lg font-semibold text-gray-900" th:text="${turma.getProfessor().getNome()}"></dd>
+                        <dd class="mt-1 text-lg font-semibold text-gray-900"
+                            th:text="${turma.getProfessor().getNome()}"></dd>
                     </div>
                 </dl>
             </div>
+        </div>
+
+        <div class="w-full bg-white rounded-lg shadow-md overflow-hidden mt-5">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-5 border-b border-gray-100">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800">Adicionar Horário</h3>
+                    <p class="text-sm text-gray-500">Área de Administração — Horarios</p>
+                </div>
+            </div>
+
+
+            <div class="rounded-md border border-gray-100 px-4 grid grid-cols-1 gap-4">
+                <p class="text-xs text-red-600" id="erroInputSala">
+                </p>
+                <div>
+                    <label for="inputNome" class="block text-sm font-medium text-gray-700 mb-1">Sala</label>
+                    <input
+                            id="inputNome"
+                            type="text"
+                            name="q"
+                            placeholder="Nome..."
+                            class="w-full px-3 py-2 rounded-md border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
+                            aria-label="Adicionar Professor"
+                    />
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="inputIdDiciplina"
+                               class="block text-sm font-medium text-gray-700 mb-1">Horário</label>
+                        <select id="inputIdDiciplina" name="diciplina"
+                                class="w-full px-3 py-2 rounded-md border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300">
+                            <option value="0">
+                                Selecionar...
+                            </option>
+                            <option value="08:00">08:00 - 08:50</option>
+                            <option value="08:50">08:50 - 09:40</option>
+                            <option value="10:00">10:00 - 10:50</option>
+                            <option value="10:50">10:50 - 11:40</option>
+                            <option value="13:00">13:00 - 13:50</option>
+                            <option value="13:50">13:50 - 14:40</option>
+                            <option value="15:00">15:00 - 15:50</option>
+                            <option value="15:50">15:50 - 16:40</option>
+                            <option value="17:00">17:00 - 17:50</option>
+                            <option value="17:50">17:50 - 18:40</option>
+                            <option value="19:00">19:00 - 19:50</option>
+                            <option value="19:50">19:50 - 20:40</option>
+                            <option value="21:00">21:00 - 21:50</option>
+                            <option value="21:50">21:50 - 22:40</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="inputIdProfessor"
+                               class="block text-sm font-medium text-gray-700 mb-1">Dia da Semana</label>
+                        <select id="inputIdProfessor" name="professor"
+                                class="w-full px-3 py-2 rounded-md border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300">
+                            <option value="0">
+                                Selecionar...
+                            </option>
+                            <option value="2">
+                                Segunda
+                            </option>
+                            <option value="3">
+                                Terça
+                            </option>
+                            <option value="4">
+                                Quarta
+                            </option>
+                            <option value="5">
+                                Quinta
+                            </option>
+                            <option value="6">
+                                Sexta
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <button type="button"
+                            id="btnAdicionar"
+                            class="w-full inline-flex items-center justify-center gap-2 px-3 py-2 rounded-md bg-indigo-600 text-white text-sm font-medium shadow-sm hover:bg-indigo-700 transition">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Adicionar</span>
+                    </button>
+                </div>
+                <p class="text-xs mt-1 text-green-600" id="sucessInputNome">
+                </p>
+            </div>
+
         </div>
     </div>
 
