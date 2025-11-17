@@ -158,4 +158,23 @@ public class TurmaRepository {
         Boolean existe = jdbcTemplate.queryForObject(sql, Boolean.class, idTurma);
         return existe != null && existe;
     }
+
+    public boolean hasTurmaPorDiciplina(int idDiciplina) {
+        String sql = """
+                 SELECT
+                     CASE
+                         WHEN EXISTS (
+                                 SELECT
+                                     *
+                                 FROM Turma
+                                 WHERE idDiciplina = ?
+                                 )
+                         THEN 1
+                         ELSE 0
+                     END
+                 AS 'Existe'
+                """;
+        Boolean existe = jdbcTemplate.queryForObject(sql, Boolean.class, idDiciplina);
+        return existe != null && existe;
+    }
 }

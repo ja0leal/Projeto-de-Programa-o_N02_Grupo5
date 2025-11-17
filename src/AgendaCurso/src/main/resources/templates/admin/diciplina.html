@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Agenda | Professores</title>
+    <title>Agenda | Diciplinas</title>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 </head>
@@ -16,8 +16,8 @@
         <div class="w-full bg-white rounded-lg shadow-md overflow-hidden">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-5 border-b border-gray-100">
                 <div>
-                    <h3 class="text-xl font-semibold text-gray-800">Professores</h3>
-                    <p class="text-sm text-gray-500">Área de Administração — Adicionar professor</p>
+                    <h3 class="text-xl font-semibold text-gray-800">Diciplinas</h3>
+                    <p class="text-sm text-gray-500">Área de Administração — Adicionar diciplina</p>
                 </div>
             </div>
             <div class="p-4">
@@ -51,8 +51,8 @@
         <div class="w-full bg-white rounded-lg shadow-md overflow-hidden">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-5 border-b border-gray-100">
                 <div>
-                    <h3 class="text-xl font-semibold text-gray-800">Professores</h3>
-                    <p class="text-sm text-gray-500">Área de Administração — Lista de professores</p>
+                    <h3 class="text-xl font-semibold text-gray-800">Diciplinas</h3>
+                    <p class="text-sm text-gray-500">Área de Administração — Lista de diciplinas</p>
                 </div>
             </div>
 
@@ -68,25 +68,15 @@
                         </thead>
 
                         <tbody>
-                        <tr th:each="professor : ${professores}" class="odd:bg-white even:bg-gray-50">
-                            <td class="px-4 py-3 text-gray-700" th:text="${professor.getIdProfessor()}">Id Professor
-                            </td>
-                            <td class="px-4 py-3 text-gray-900 font-medium" th:text="${professor.getNome()}">Nome
-                                Professor
-                            </td>
+                        <tr th:each="diciplina : ${diciplinas}" class="odd:bg-white even:bg-gray-50">
+                            <td class="px-4 py-3 text-gray-700" th:text="${diciplina.getIdDiciplina()}"></td>
+                            <td class="px-4 py-3 text-gray-900 font-medium" th:text="${diciplina.getNome()}"></td>
 
                             <td class="px-4 py-3 text-right">
                                 <div class="inline-flex items-center gap-2">
-                                    <a th:href="@{/Admim/ProfessorDetalhes/{id}(id=${professor.getIdProfessor()})}"
-                                       class="view-btn inline-flex items-center justify-center w-8 h-8 rounded-md border border-gray-200 hover:bg-gray-50"
-                                       title="Visualizar">
-
-                                        <i class="fa-regular fa-eye"></i>
-                                    </a>
-
                                     <button type="button"
                                             class="btnDeletar inline-flex items-center justify-center w-8 h-8 rounded-md border border-red-200 text-red-600 hover:bg-red-50"
-                                            th:attr="data-id=${professor.getIdProfessor()}"
+                                            th:attr="data-id=${diciplina.getIdDiciplina()}"
                                             title="Excluir">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
@@ -94,9 +84,9 @@
                             </td>
                         </tr>
 
-                        <tr th:if="${#lists.isEmpty(professores)}">
+                        <tr th:if="${#lists.isEmpty(diciplinas)}">
                             <td colspan="3" class="px-4 py-8 text-center text-sm text-gray-500">
-                                Nenhum professor encontrado.
+                                Nenhuma diciplina encontrada.
                             </td>
                         </tr>
                         </tbody>
@@ -110,5 +100,5 @@
 
 <footer th:replace="~{layout/layout.html :: footer}"></footer>
 </body>
-<script type="module" th:src="@{/js/professores.js}"></script>
+<script type="module" th:src="@{/js/diciplina.js}"></script>
 </html>

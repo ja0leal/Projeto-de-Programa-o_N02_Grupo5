@@ -48,6 +48,23 @@ class AdminController {
         return "admin/professor";
     }
 
+    @GetMapping("/Diciplina")
+    public String diciplina(Principal principal, Model model) {
+        if (principal == null) {
+            return "redirect:/login";
+        }
+        String matricula = principal.getName();
+        Aluno aluno = _alunosRepository.getPorMatricula(matricula).orElseThrow(() -> new RuntimeException("Aluno logado não encontrado"));
+        if (!aluno.getRole().equals("admin")) {
+            return "redirect:/login";
+        }
+        model.addAttribute("alunoLogado", aluno);
+
+        List<Diciplina> diciplinas = _diciplinaRepository.getTodos();
+        model.addAttribute("diciplinas", diciplinas);
+        return "admin/diciplina";
+    }
+
     @GetMapping("/Turma")
     public String turma(Principal principal, Model model) {
         if (principal == null) {

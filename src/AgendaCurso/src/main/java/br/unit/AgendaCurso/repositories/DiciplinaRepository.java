@@ -44,4 +44,16 @@ public class DiciplinaRepository {
 
         return jdbcTemplate.query(sql, rowMapper);
     }
+
+    public int addDiciplina(Diciplina diciplina){
+        String sql = "INSERT INTO Diciplina (nome) VALUES (?)";
+
+        return jdbcTemplate.update(sql, diciplina.getNome());
+    }
+
+    public void deleteDiciplina(int id){
+        String sql = "DELETE  FROM Diciplina WHERE IdDiciplina = ?";
+
+        jdbcTemplate.update(sql, id);
+    }
 }
