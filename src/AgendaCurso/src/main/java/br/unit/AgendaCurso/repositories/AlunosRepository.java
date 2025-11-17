@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -68,10 +69,39 @@ public class AlunosRepository {
         return jdbcTemplate.query(sql, rowMapper,  idTurma);
     }
 
+    public List<Aluno> getTodos() {
+        String sql = """
+                SELECT
+                	*
+                FROM Aluno
+                """;
+
+        RowMapper<Aluno> rowMapper = ((rs, rowNum) -> {
+            Aluno a = new Aluno();
+            a.setIdAluno(rs.getInt("IdAluno"));
+            a.setNome(rs.getString("Nome"));
+            a.setMatricula(rs.getString("Matricula"));
+            a.setEmail(rs.getString("Email"));
+            a.setSenha(rs.getString("Senha"));
+            a.setRole(rs.getString("Role"));
+            a.setIdCurso(rs.getInt("IdCurso"));
+            return a;
+        });
+
+        return jdbcTemplate.query(sql, rowMapper);
+    }
+
+    public String maxMatricula() {
+        String sql = """
+                SELECT MAX(a.matricula) FROM Aluno a
+                """;
+        return jdbcTemplate.queryForObject(sql, String.class);
+    }
+
     public int addAluno(Aluno aluno) {
         String sql = "" +
                 "INSERT INTO Aluno (Nome, Matricula, Email, Senha, Role, IdCurso) " +
                 "VALUES (?, ?, ?, ?, ?, ?) ";
-        return jdbcTemplate.update(sql, aluno.getNome(), aluno.getMatricula(), aluno.getEmail(), passwordEncoder.encode(aluno.getSenha()), aluno.getRole(), aluno.getIdCurso());
+        return jdbcTemplate.update(sql, aluno.getNome(), aluno.getMatricula(), "exemplo@email.com", passwordEncoder.encode(aluno.getSenha()), aluno.getRole(), 1);
     }
 }

@@ -2,25 +2,76 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Agenda | Home</title>
+    <title>Home | Agenda Grupo 5</title>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 </head>
+
 <style th:replace="~{layout/layout.html :: styleGlass}"></style>
-<body th:style="|background-image:url(@{/assets/background.svg});|" class="bg-cover bg-no-repeat bg-fixed min-h-screen flex flex-col">
+<body th:style="|background-image:url(@{/assets/background.svg});|"
+      class="bg-cover bg-no-repeat bg-fixed min-h-screen flex flex-col">
 <header th:replace="~{layout/layout.html :: header}"></header>
 
-<main class="grid grid-cols-5 w-full gap-3 flex-1 px-10 py-10">
-    <div class="h-full">
-    </div>
-    <div class="h-full col-span-3 flex justify-center items-center">
-        <div class="w-96 h-96 glass rounded-lg shadow-lg border border-gray-700">
-            <div class="h-full w-full justify-center items-start text-center pt-5">
-                <h2 class="font-extralight text-3xl text-gray-200">Bem Vindo!</h2>
+<main class="grid grid-cols-6 w-full gap-3 flex-1 px-10 py-10 my-5">
+    <div class="h-full col-span-6 bg-gray-100 rounded-lg shadow-lg border border-gray-200 p-6 space-y-5">
+
+        <div class="w-full bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-5 border-b border-gray-100">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800">
+                        <i class="fa-solid fa-house text-gray-700 mr-2"></i>
+                        Bem-vindo(a) ao Agenda Grupo 5
+                    </h3>
+                    <p class="text-sm text-gray-500">Sua plataforma centralizada de agendamento.</p>
+                </div>
+            </div>
+
+            <div class="p-6 text-gray-700 space-y-4">
+                <p class="text-base">
+                    Este é o seu painel principal. Por aqui, você pode gerenciar suas tarefas, visualizar seus horários e colaborar com sua equipe de forma simples e direta.
+                </p>
+                <p>
+                    Utilize os links de acesso rápido abaixo para navegar pelas principais funcionalidades do sistema.
+                </p>
             </div>
         </div>
-    </div>
-    <div class="h-full">
+
+        <div class="w-full bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-5 border-b border-gray-100">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800">
+                        <i class="fa-solid fa-rocket text-gray-700 mr-2"></i>
+                        Acesso Rápido
+                    </h3>
+                    <p class="text-sm text-gray-500">O que você gostaria de fazer?</p>
+                </div>
+            </div>
+
+            <div class="p-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+                    <a href="/Agenda/"
+                       class="flex flex-col items-center justify-center p-6 bg-gray-50 rounded-lg border border-gray-200 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 hover:shadow-sm transition-all">
+                        <i class="fa-solid fa-calendar-days text-3xl mb-3"></i>
+                        <span class="text-sm font-semibold">Minha Agenda e Turmas</span>
+                    </a>
+
+                    <a href="/Agenda/AlterarGrade"
+                       class="flex flex-col items-center justify-center p-6 bg-gray-50 rounded-lg border border-gray-200 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 hover:shadow-sm transition-all">
+                        <i class="fa-solid fa-list-check text-3xl mb-3"></i>
+                        <span class="text-sm font-semibold">Alterar Minha Grade</span>
+                    </a>
+
+                    <a href="/Sobre"
+                       class="flex flex-col items-center justify-center p-6 bg-gray-50 rounded-lg border border-gray-200 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 hover:shadow-sm transition-all">
+                        <i class="fa-solid fa-circle-info text-3xl mb-3"></i>
+                        <span class="text-sm font-semibold">Sobre o Projeto</span>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
     </div>
 </main>
 

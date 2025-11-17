@@ -33,5 +33,15 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("/Sobre")
+    public String sobre(Principal principal, Model model) {
+        if(principal == null){
+            return "index";
+        }
+        String matricula = principal.getName();
+        Aluno aluno = _alunosRepository.getPorMatricula(matricula).orElseThrow(() -> new RuntimeException("Aluno logado não encontrado"));
 
+        model.addAttribute("alunoLogado", aluno);
+        return "home/sobre";
+    }
 }

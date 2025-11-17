@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Agenda | Diciplinas</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+</head>
+<style th:replace="~{layout/layout.html :: styleGlass}"></style>
+<body th:style="|background-image:url(@{/assets/background.svg});|"
+      class="bg-cover bg-no-repeat bg-fixed min-h-screen flex flex-col">
+<header th:replace="~{layout/layout.html :: header}"></header>
+
+<main class="grid grid-cols-6 w-full gap-3 flex-1 px-10 py-10 my-5">
+    <div class="h-full col-span-2 bg-gray-200 rounded-lg shadow-lg border border-gray-700 p-6">
+        <div class="w-full bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-5 border-b border-gray-100">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800">Alunos</h3>
+                    <p class="text-sm text-gray-500">Área de Administração — Adicionar aluno</p>
+                </div>
+            </div>
+            <div class="rounded-md border border-gray-100 px-4 grid grid-cols-2 gap-4">
+                <p class="text-xs col-span-2 text-red-600" id="erroInputNome">
+                </p>
+                <div class="col-span-2">
+                    <label for="inputNome" class="block text-sm font-medium text-gray-700 mb-1">Nome</label>
+                    <input
+                            id="inputNome"
+                            type="text"
+                            name="q"
+                            placeholder="Nome..."
+                            class="w-full px-3 py-2 rounded-md border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
+                            aria-label="Adicionar Professor"
+                    />
+                </div>
+
+                <div>
+                    <label for="inputSenha" class="block text-sm font-medium text-gray-700 mb-1">Senha</label>
+                    <input
+                            id="inputSenha"
+                            type="password"
+                            name="q"
+                            placeholder="Nome..."
+                            class="w-full px-3 py-2 rounded-md border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
+                            aria-label="Adicionar Professor"
+                    />
+                </div>
+
+                <div>
+                    <label for="ddlRole" class="block text-sm font-medium text-gray-700 mb-1">Função</label>
+                    <select id="ddlRole" name="professor"
+                            class="w-full px-3 py-2 rounded-md border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300">
+                        <option value="Comum">Comum</option>
+                        <option value="admin">Administrador</option>
+                    </select>
+                </div>
+                <div class="col-span-2">
+                    <button type="button"
+                            id="btnAdicionar"
+                            class="w-full inline-flex items-center justify-center gap-2 px-3 py-2 rounded-md bg-indigo-600 text-white text-sm font-medium shadow-sm hover:bg-indigo-700 transition">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Adicionar</span>
+                    </button>
+                </div>
+                <p class="text-xs mt-1 text-green-600" id="sucessInputNome">
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="h-full col-span-4 bg-gray-100 rounded-lg shadow-lg border border-gray-200 p-6">
+        <div class="w-full bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-5 border-b border-gray-100">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800">Alunos</h3>
+                    <p class="text-sm text-gray-500">Área de Administração — Lista de alunos</p>
+                </div>
+            </div>
+
+            <div class="p-4">
+                <div class="overflow-x-auto rounded-md border border-gray-100">
+                    <table class="table-fixed w-full text-sm">
+                        <thead class="bg-white">
+                        <tr>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Matricula</th>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nome</th>
+                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">Ações</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr th:each="aluno : ${alunos}" class="odd:bg-white even:bg-gray-50">
+                            <td class="px-4 py-3 text-gray-700" th:text="${aluno.getMatricula()}"></td>
+                            <td class="px-4 py-3 text-gray-900 font-medium" th:text="${aluno.getNome()}"></td>
+
+                            <td class="px-4 py-3 text-right">
+                                <div class="inline-flex items-center gap-2">
+                                    <button type="button"
+                                            class="btnDeletar inline-flex items-center justify-center w-8 h-8 rounded-md border border-red-200 text-red-600 hover:bg-red-50"
+                                            th:attr="data-id=${aluno.getIdAluno()}"
+                                            title="Excluir">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr th:if="${#lists.isEmpty(alunos)}">
+                            <td colspan="3" class="px-4 py-8 text-center text-sm text-gray-500">
+                                Nenhum aluno registrado.
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer th:replace="~{layout/layout.html :: footer}"></footer>
+</body>
+<script type="module" th:src="@{/js/aluno.js}"></script>
+</html>

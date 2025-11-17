@@ -145,6 +145,23 @@ class AdminController {
         return "admin/turmaDetalhes";
     }
 
+    @GetMapping("/Aluno")
+    public String aluno(Principal principal, Model model) {
+        if (principal == null) {
+            return "redirect:/login";
+        }
+        String matricula = principal.getName();
+        Aluno aluno = _alunosRepository.getPorMatricula(matricula).orElseThrow(() -> new RuntimeException("Aluno logado não encontrado"));
+        if (!aluno.getRole().equals("admin")) {
+            return "redirect:/login";
+        }
+        model.addAttribute("alunoLogado", aluno);
+
+        List<Aluno> alunos = _alunosRepository.getTodos();
+        model.addAttribute("alunos", alunos);
+        return "admin/alunos";
+    }
+
     private void addHorario(HorarioLinha linha, Horario horario) {
         linha.setVisivel(true);
         switch (horario.getDiaDaSemana()) {

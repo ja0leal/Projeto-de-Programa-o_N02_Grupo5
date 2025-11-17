@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sobre | Agenda Grupo 5</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+</head>
+
+<style th:replace="~{layout/layout.html :: styleGlass}"></style>
+<body th:style="|background-image:url(@{/assets/background.svg});|"
+      class="bg-cover bg-no-repeat bg-fixed min-h-screen flex flex-col">
+<header th:replace="~{layout/layout.html :: header}"></header>
+
+<main class="grid grid-cols-6 w-full gap-3 flex-1 px-10 py-10 my-5">
+    <div class="h-full col-span-6 bg-gray-100 rounded-lg shadow-lg border border-gray-200 p-6 space-y-5">
+
+        <div class="w-full bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-5 border-b border-gray-100">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800">Sobre o Projeto: Agenda Grupo 5</h3>
+                    <p class="text-sm text-gray-500">O que é o projeto e o problema que ele resolve.</p>
+                </div>
+            </div>
+
+            <div class="p-6 text-gray-700 space-y-4">
+                <p class="text-base">
+                    O "Agenda Grupo 5" é uma aplicação web desenvolvida em Spring Web destinada a otimizar o gerenciamento de tarefas e agendamentos para pequenas equipes, como grupos de estudo acadêmicos ou times de desenvolvimento ágil.
+                </p>
+
+                <h4 class="text-lg font-semibold text-gray-800 pt-2">O Problema e Nossa Solução</h4>
+                <p>
+                    Ferramentas de mercado consolidadas (como Trello, Asana ou Google Calendar) são, por vezes, excessivamente complexas ou genéricas para as necessidades específicas de grupos menores. Observou-se que essa complexidade pode gerar atrito na adoção da ferramenta, levando a uma subutilização ou ao abandono da mesma.
+                </p>
+                <p>
+                    Nossa proposta justifica-se pela necessidade de preencher essa lacuna, oferecendo uma solução leve (lightweight), intuitiva e centralizada, focada exclusivamente nos elementos essenciais da gestão de tarefas colaborativas: visibilidade de prazos e atribuição de responsabilidades.
+                </p>
+            </div>
+        </div>
+
+        <div class="w-full bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-5 border-b border-gray-100">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800">Tecnologias Utilizadas</h3>
+                    <p class="text-sm text-gray-500">A stack técnica que fundamenta o projeto.</p>
+                </div>
+            </div>
+
+            <div class="p-6">
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li><strong>Backend:</strong> Java (JDK 17) com Spring Boot e Spring Web MVC.</li>
+                    <li><strong>Frontend (View):</strong> Renderização no lado do servidor (SSR) com o modelo engine Thymeleaf.</li>
+                    <li><strong>Estilização:</strong> Tailwind CSS (metodologia utility-first) para um design responsivo.</li>
+                    <li><strong>Banco de Dados:</strong> Microsoft SQL Server.</li>
+                    <li><strong>Acesso a Dados:</strong> Spring JdbcTemplate, para controle direto e granular sobre as consultas SQL.</li>
+                    <li><strong>Gerenciamento e Build:</strong> Apache Maven.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="w-full bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-5 border-b border-gray-100">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800">Contexto e Autores</h3>
+                    <p class="text-sm text-gray-500">Equipe de desenvolvimento e contexto acadêmico.</p>
+                </div>
+            </div>
+
+            <div class="p-6 text-gray-700 space-y-4">
+                <p>
+                    Este projeto foi desenvolvido como requisito parcial da disciplina <strong>Projeto de Programação</strong>, ministrada pela <strong>Prof. Layse Santos Souza</strong> na <strong>Universidade Tiradentes (Unit)</strong>, durante o 2º semestre de 2025.
+                </p>
+
+                <h4 class="text-lg font-semibold text-gray-800">Equipe de Desenvolvimento</h4>
+                <ul class="list-disc list-inside space-y-1">
+                    <li>Edilberto Cardoso de Souza Neto</li>
+                    <li>Abraão luiz ribeiro da cruz dantas</li>
+                    <li>Bergue Vitor de Souza Filho</li>
+                    <li>Annamel Moura Amâncio</li>
+                    <li>João Marcos França dos Santos Leal</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<footer th:replace="~{layout/layout.html :: footer}"></footer>
+</body>
+</html>
