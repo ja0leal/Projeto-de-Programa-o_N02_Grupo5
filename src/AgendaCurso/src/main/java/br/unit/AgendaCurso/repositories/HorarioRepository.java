@@ -2,6 +2,7 @@ package br.unit.AgendaCurso.repositories;
 
 import br.unit.AgendaCurso.models.Diciplina;
 import br.unit.AgendaCurso.models.Horario;
+import br.unit.AgendaCurso.models.Turma;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -18,10 +19,10 @@ public class HorarioRepository {
     @Autowired
     private TurmaRepository _turmaRepository;
 
-    public Horario getPorId(int id){
+    public Horario getPorId(int id) {
         String sql = "SELECT * FROM Horario WHERE IdHorario = ?;";
         RowMapper<Horario> rowMapper = ((rs, rowNum) -> {
-            Horario h =  new Horario(
+            Horario h = new Horario(
                     rs.getInt("IdHorario"),
                     rs.getInt("IdTurma"),
                     rs.getObject("HorarioInicio", LocalTime.class),
@@ -34,17 +35,17 @@ public class HorarioRepository {
         return jdbcTemplate.queryForObject(sql, rowMapper, id);
     }
 
-    public List<Horario> getPorTurmaId(int id){
+    public List<Horario> getPorTurmaId(int id) {
         String sql =
                 """
-                SELECT
-                    * 
-                FROM Horario
-                WHERE IdTurma = ?
-                ORDER BY HorarioInicio;
-                """;
+                        SELECT
+                            * 
+                        FROM Horario
+                        WHERE IdTurma = ?
+                        ORDER BY HorarioInicio;
+                        """;
         RowMapper<Horario> rowMapper = ((rs, rowNum) -> {
-            Horario h =  new Horario(
+            Horario h = new Horario(
                     rs.getInt("IdHorario"),
                     rs.getInt("IdTurma"),
                     rs.getObject("HorarioInicio", LocalTime.class),
@@ -57,7 +58,46 @@ public class HorarioRepository {
         return jdbcTemplate.query(sql, rowMapper, id);
     }
 
-    public int addHorario(Horario horario){
+    public List<Horario> getProximosPorTurmas(List<Turma> turmas) {
+        String queryCondition = " (";
+        for (Turma turma : turmas) {
+            String condition = " IdTurma = " + turma.getIdTurma() + " OR ";
+            queryCondition = queryCondition + condition;
+        }
+
+        queryCondition = queryCondition.substring(0, queryCondition.length() - 3);
+        queryCondition = queryCondition + ") AND";
+
+        String query = """
+                        SELECT
+                        	*
+                        FROM Horario
+                        WHERE
+                """ + queryCondition;
+
+        String sql = query +
+                """
+                        	DiaSemana > DATEPART(weekday, SYSDATETIME()) OR (DiaSemana = DATEPART(weekday, SYSDATETIME()) AND HorarioInicio > CAST(SYSDATETIME() AS TIME))
+                        ORDER BY
+                            DiaSemana,
+                            HorarioInicio;
+                        """;
+
+        RowMapper<Horario> rowMapper = ((rs, rowNum) -> {
+            Horario h = new Horario(
+                    rs.getInt("IdHorario"),
+                    rs.getInt("IdTurma"),
+                    rs.getObject("HorarioInicio", LocalTime.class),
+                    rs.getString("Sala"),
+                    rs.getInt("DiaSemana"),
+                    _turmaRepository.getPorId(rs.getInt("IdTurma"))
+            );
+            return h;
+        });
+        return jdbcTemplate.query(sql, rowMapper);
+    }
+
+    public int addHorario(Horario horario) {
         String sql = """
                 INSERT INTO Horario(
                 	HorarioInicio,
@@ -72,11 +112,11 @@ public class HorarioRepository {
                     ?
                 )
                 """;
-        return jdbcTemplate.update(sql, horario.getHorarioInicio(), horario.getSala(), horario.getDiaDaSemana(),  horario.getIdTurma());
+        return jdbcTemplate.update(sql, horario.getHorarioInicio(), horario.getSala(), horario.getDiaDaSemana(), horario.getIdTurma());
     }
 
-    public boolean hasHorario(LocalTime horario, int diaSemana, int idTurma){
-        String sql =    """
+    public boolean hasHorario(LocalTime horario, int diaSemana, int idTurma) {
+        String sql = """
                 SELECT
                     CASE
                         WHEN EXISTS (SELECT 1 FROM Horario WHERE DiaSemana = ? AND CAST(HorarioInicio AS TIME) = CAST(? AS TIME) AND IdTurma = ?)

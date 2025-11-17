@@ -6,6 +6,7 @@ import br.unit.AgendaCurso.models.Horario;
 import br.unit.AgendaCurso.models.Turma;
 import br.unit.AgendaCurso.repositories.*;
 import br.unit.AgendaCurso.viewModels.HorarioLinha;
+import br.unit.AgendaCurso.viewModels.ProximosHorarios;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Controller;
@@ -39,8 +40,10 @@ public class AgendaController {
         Aluno aluno = _alunosRepository.getPorMatricula(matricula).orElseThrow(() -> new RuntimeException("Aluno logado não encontrado"));
         model.addAttribute("alunoLogado", aluno);
 
+
         List<Turma> turmas = _turmaRepository.getPorAlunoId(aluno.getIdAluno());
         List<Horario> horarios = new ArrayList<>();
+
         for (Turma turma : turmas) {
             horarios.addAll(_horarioRepository.getPorTurmaId(turma.getIdTurma()));
         }
@@ -55,6 +58,14 @@ public class AgendaController {
             addHorario(mapLinha.get(horario.getHorarioInicio()), horario);
         }
 
+        List<ProximosHorarios> proximosHorarios = new ArrayList<>();
+
+        List<Horario> horarios1 = _horarioRepository.getProximosPorTurmas(turmas);
+        for(Horario horario : horarios1) {
+            proximosHorarios.add(new ProximosHorarios(horario));
+        }
+
+        model.addAttribute("proximosHorarios", proximosHorarios);
         model.addAttribute("horariosLinha", horariosLinha);
         model.addAttribute("turmas", turmas);
         return "agenda/index";
