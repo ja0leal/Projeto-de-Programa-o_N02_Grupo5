@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectHorario = document.getElementById('inputHorario');
     const selectDia = document.getElementById('inputDia');
     const erroInputSala = document.getElementById("erroInputSala");
+    const btnsDeletar = document.querySelectorAll(".btnDeletarHorario");
     if (!(inputSala instanceof HTMLInputElement) || !(btnAdicionar instanceof HTMLButtonElement)) {
         console.error('Falha ao carregar inputSala do formulário de turma.');
         return;
@@ -22,6 +23,45 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error('Falha ao carregar inputSala do formulário de turma.');
         return;
     }
+    btnsDeletar.forEach(button => {
+        if (!(button instanceof HTMLButtonElement)) {
+            return;
+        }
+        button.addEventListener("click", () => __awaiter(void 0, void 0, void 0, function* () {
+            const horarioId = button.dataset.id;
+            if (!horarioId) {
+                console.error('Falha ao carregar elementos do professor.');
+                return;
+            }
+            ;
+            try {
+                const response = yield fetch(`/api/horario/deletar/${horarioId}`, {
+                    method: 'DELETE'
+                });
+                if (response.ok) {
+                    +window.location.reload();
+                }
+                else {
+                    if (response.status === 409) {
+                        const errorMessage = yield response.text();
+                        alert(`Não foi possível excluir: ${errorMessage}`);
+                    }
+                    else {
+                        alert(`Ocorreu um erro desconhecido (Status: ${response.status}).`);
+                    }
+                }
+            }
+            catch (error) {
+                console.error('Falha sair de turma:', error);
+                if (error instanceof Error) {
+                    alert(`Ocorreu um erro: ${error.message}`);
+                }
+                else {
+                    alert('Ocorreu um erro desconhecido.');
+                }
+            }
+        }));
+    });
     btnAdicionar.addEventListener("click", (event) => __awaiter(void 0, void 0, void 0, function* () {
         if (inputSala.value.trim() === "") {
             //@ts-ignore

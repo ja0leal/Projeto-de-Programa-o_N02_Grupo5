@@ -155,4 +155,13 @@ public class HorarioRepository {
         Boolean existe = jdbcTemplate.queryForObject(sql, Boolean.class, idAluno, horario, diaSemana);
         return existe != null && existe;
     }
+
+    public void deleteHorario(int id){
+        String sql =
+                """
+                DELETE FROM Horario WHERE IdHorario = ?
+               """;
+
+        jdbcTemplate.update(sql, id);
+    }
 }

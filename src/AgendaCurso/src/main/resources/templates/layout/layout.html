@@ -24,7 +24,8 @@
         </p>
     </div>
     <div class="col-span-3 text-center px-20 h-full glass rounded-lg shadow-lg border border-gray-700">
-        <div class="grid grid-cols-5 gap-3 w-full h-full items-center">
+
+        <div class="grid grid-cols-5 gap-3 w-full h-full items-center" th:if="${alunoLogado.getRole() eq 'admin'}">
             <a href="/" class="text-gray-200 hover:text-2xl transition-all font-extralight text-xl">Home</a>
             <a href="/Agenda/" class="text-gray-200 hover:text-2xl transition-all font-extralight text-xl">Agenda</a>
             <a href="/Agenda/AlterarGrade" class="text-gray-200 hover:text-2xl transition-all font-extralight text-xl">Alterar Grade</a>
@@ -49,14 +50,16 @@
                        role="menuitem">
                         Turmas
                     </a>
-                    <a href="/"
-                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                       role="menuitem">
-                        Configurações
-                    </a>
                 </div>
                 </div>
             </div>
+            <a href="" class="text-gray-200 hover:text-2xl transition-all font-extralight text-xl">Sobre</a>
+        </div>
+
+        <div class="grid grid-cols-4 gap-3 w-full h-full items-center" th:if="${alunoLogado.getRole() eq 'Comum'}">
+            <a href="/" class="text-gray-200 hover:text-2xl transition-all font-extralight text-xl">Home</a>
+            <a href="/Agenda/" class="text-gray-200 hover:text-2xl transition-all font-extralight text-xl">Agenda</a>
+            <a href="/Agenda/AlterarGrade" class="text-gray-200 hover:text-2xl transition-all font-extralight text-xl">Alterar Grade</a>
             <a href="" class="text-gray-200 hover:text-2xl transition-all font-extralight text-xl">Sobre</a>
         </div>
     </div>

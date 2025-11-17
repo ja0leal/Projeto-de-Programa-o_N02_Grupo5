@@ -197,10 +197,15 @@
                             </td>
 
                             <td class="py-2 px-3 align-top">
-                                <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs h-full overflow-y-auto break-words"
+                                <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs h-full overflow-y-auto break-words relative"
                                      th:if="${linha.getSegunda() != null}">
-                    <span class="font-bold text-blue-800"
-                          th:text="${linha.getSegunda()?.getTurma()?.getDiciplina()?.getNome()}">Nome da Diciplina</span>
+
+                                    <button class="absolute top-1 right-1 text-red-500 hover:text-red-700 z-10 btnDeletarHorario"
+                                            th:attr="data-id=${linha.getSegunda()?.getIdHorario()}">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
+                                    <span class="font-bold text-blue-800" th:text="${linha.getSegunda()?.getTurma()?.getDiciplina()?.getNome()}">Nome da Diciplina</span>
                                     <div class="text-gray-600 mt-1">
                                         <span th:text="${linha.getSegunda()?.getSala()}">Sala</span>
                                         <span> | </span>
@@ -210,10 +215,15 @@
                             </td>
 
                             <td class="py-2 px-3 align-top">
-                                <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs h-full overflow-y-auto break-words"
+                                <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs h-full overflow-y-auto break-words relative"
                                      th:if="${linha.getTerca() != null}">
-                    <span class="font-bold text-blue-800"
-                          th:text="${linha.getTerca()?.getTurma()?.getDiciplina()?.getNome()}">Nome da Diciplina</span>
+
+                                    <button class="absolute top-1 right-1 text-red-500 hover:text-red-700 z-10 btnDeletarHorario"
+                                            th:attr="data-id=${linha.getTerca()?.getIdHorario()}">
+                                    <i class="fas fa-trash-alt"></i>
+                                    </button>
+
+                                    <span class="font-bold text-blue-800" th:text="${linha.getTerca()?.getTurma()?.getDiciplina()?.getNome()}">Nome da Diciplina</span>
                                     <div class="text-gray-600 mt-1">
                                         <span th:text="${linha.getTerca()?.getSala()}">Sala</span>
                                         <span> | </span>
@@ -223,10 +233,15 @@
                             </td>
 
                             <td class="py-2 px-3 align-top">
-                                <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs h-full overflow-y-auto break-words"
+                                <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs h-full overflow-y-auto break-words relative"
                                      th:if="${linha.getQuarta() != null}">
-                    <span class="font-bold text-blue-800"
-                          th:text="${linha.getQuarta()?.getTurma()?.getDiciplina()?.getNome()}">Nome da Diciplina</span>
+
+                                    <button class="absolute top-1 right-1 text-red-500 hover:text-red-700 z-10 btnDeletarHorario"
+                                            th:attr="data-id=${linha.getQuarta()?.getIdHorario()}">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
+                                    <span class="font-bold text-blue-800" th:text="${linha.getQuarta()?.getTurma()?.getDiciplina()?.getNome()}">Nome da Diciplina</span>
                                     <div class="text-gray-600 mt-1">
                                         <span th:text="${linha.getQuarta()?.getSala()}">Sala</span>
                                         <span> | </span>
@@ -236,10 +251,15 @@
                             </td>
 
                             <td class="py-2 px-3 align-top">
-                                <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs h-full overflow-y-auto break-words"
+                                <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs h-full overflow-y-auto break-words relative"
                                      th:if="${linha.getQuinta() != null}">
-                    <span class="font-bold text-blue-800"
-                          th:text="${linha.getQuinta()?.getTurma()?.getDiciplina()?.getNome()}">Nome da Diciplina</span>
+
+                                    <button class="absolute top-1 right-1 text-red-500 hover:text-red-700 z-10 btnDeletarHorario"
+                                            th:attr="data-id=${linha.getQuinta()?.getIdHorario()}">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
+                                    <span class="font-bold text-blue-800" th:text="${linha.getQuinta()?.getTurma()?.getDiciplina()?.getNome()}">Nome da Diciplina</span>
                                     <div class="text-gray-600 mt-1">
                                         <span th:text="${linha.getQuinta()?.getSala()}">Sala</span>
                                         <span> | </span>
@@ -249,10 +269,15 @@
                             </td>
 
                             <td class="py-2 px-3 align-top">
-                                <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs h-full overflow-y-auto break-words"
+                                <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs h-full overflow-y-auto break-words relative"
                                      th:if="${linha.getSexta() != null}">
-                    <span class="font-bold text-blue-800"
-                          th:text="${linha.getSexta()?.getTurma()?.getDiciplina()?.getNome()}">Nome da Diciplina</span>
+
+                                    <button class="absolute top-1 right-1 text-red-500 hover:text-red-700 z-10 btnDeletarHorario"
+                                            th:attr="data-id=${linha.getSexta()?.getIdHorario()}">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
+                                    <span class="font-bold text-blue-800" th:text="${linha.getSexta()?.getTurma()?.getDiciplina()?.getNome()}">Nome da Diciplina</span>
                                     <div class="text-gray-600 mt-1">
                                         <span th:text="${linha.getSexta()?.getSala()}">Sala</span>
                                         <span> | </span>
@@ -262,10 +287,15 @@
                             </td>
 
                             <td class="py-2 px-3 align-top">
-                                <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs h-full overflow-y-auto break-words"
+                                <div class="bg-blue-100 border border-blue-300 rounded-md p-2 text-xs h-full overflow-y-auto break-words relative"
                                      th:if="${linha.getSabado() != null}">
-                    <span class="font-bold text-blue-800"
-                          th:text="${linha.getSabado()?.getTurma()?.getDiciplina()?.getNome()}">Nome da Diciplina</span>
+
+                                    <button class="absolute top-1 right-1 text-red-500 hover:text-red-700 z-10 btnDeletarHorario"
+                                            th:attr="data-id=${linha.getSabado()?.getIdHorario()}">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
+                                    <span class="font-bold text-blue-800" th:text="${linha.getSabado()?.getTurma()?.getDiciplina()?.getNome()}">Nome da Diciplina</span>
                                     <div class="text-gray-600 mt-1">
                                         <span th:text="${linha.getSabado()?.getSala()}">Sala</span>
                                         <span> | </span>
