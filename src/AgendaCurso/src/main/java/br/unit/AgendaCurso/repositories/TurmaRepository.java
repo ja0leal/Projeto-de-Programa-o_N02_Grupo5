@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalTime;
 import java.util.List;
 
 @Repository
@@ -137,5 +138,24 @@ public class TurmaRepository {
                         """;
 
         return jdbcTemplate.update(sql, idAluno, idTurma);
+    }
+
+    public boolean hasAluno(int idTurma) {
+        String sql = """
+                 SELECT
+                     CASE
+                         WHEN EXISTS (
+                                 SELECT
+                                     *
+                                 FROM AlunoTurma
+                                 WHERE IdTurma = ?
+                                 )
+                         THEN 1
+                         ELSE 0
+                     END
+                 AS 'Existe'
+                """;
+        Boolean existe = jdbcTemplate.queryForObject(sql, Boolean.class, idTurma);
+        return existe != null && existe;
     }
 }

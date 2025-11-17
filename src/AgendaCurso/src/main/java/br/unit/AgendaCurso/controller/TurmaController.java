@@ -10,6 +10,7 @@ import br.unit.AgendaCurso.models.Turma;
 import br.unit.AgendaCurso.repositories.AlunosRepository;
 import br.unit.AgendaCurso.repositories.TurmaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -53,12 +54,18 @@ class TurmaController {
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<?> delete(@PathVariable int id, Principal principal) {
         String matricula = principal.getName();
-        Aluno aluno = _alunosRepository.getPorMatricula(matricula).orElseThrow(() -> new RuntimeException("Aluno logado não encontrado"));
-        if(!Objects.equals(aluno.getRole(), "admin")) {
-            return ResponseEntity.ok().build();
+        Aluno aluno = _alunosRepository.getPorMatricula(matricula)
+                .orElseThrow(() -> new RuntimeException("Aluno logado não encontrado"));
+        if (!Objects.equals(aluno.getRole(), "admin")) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+        if (_turmaRepository.hasAluno(id)) {
+
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body("Não é possível deletar turmas que possuem alunos.");
         }
         _turmaRepository.deleteTurma(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/entrarTurma/{id}")
