@@ -71,6 +71,46 @@ public class AgendaController {
         return "agenda/index";
     }
 
+    @GetMapping("/AlterarGrade")
+    public String alterarGrade(Principal principal, Model model, Map map) {
+        if (principal == null) {
+            return "index";
+        }
+        String matricula = principal.getName();
+        Aluno aluno = _alunosRepository.getPorMatricula(matricula).orElseThrow(() -> new RuntimeException("Aluno logado não encontrado"));
+        model.addAttribute("alunoLogado", aluno);
+
+
+        List<Turma> turmas = _turmaRepository.getPorAlunoId(aluno.getIdAluno());
+        List<Horario> horarios = new ArrayList<>();
+
+        for (Turma turma : turmas) {
+            horarios.addAll(_horarioRepository.getPorTurmaId(turma.getIdTurma()));
+        }
+
+        List<HorarioLinha> horariosLinha = criarTemplateDeLinhas();
+        Map<LocalTime, HorarioLinha> mapLinha = new HashMap<>();
+        for (HorarioLinha horarioLinha : horariosLinha) {
+            mapLinha.put(horarioLinha.getHoraInicio(), horarioLinha);
+        }
+
+        for(Horario horario : horarios) {
+            addHorario(mapLinha.get(horario.getHorarioInicio()), horario);
+        }
+
+        List<ProximosHorarios> proximosHorarios = new ArrayList<>();
+
+        List<Horario> horarios1 = _horarioRepository.getProximosPorTurmas(turmas);
+        for(Horario horario : horarios1) {
+            proximosHorarios.add(new ProximosHorarios(horario));
+        }
+
+        model.addAttribute("proximosHorarios", proximosHorarios);
+        model.addAttribute("horariosLinha", horariosLinha);
+        model.addAttribute("turmas", turmas);
+        return "agenda/alterarGrade";
+    }
+
     private void addHorario(HorarioLinha linha, Horario horario) {
         linha.setVisivel(true);
         switch (horario.getDiaDaSemana()) {

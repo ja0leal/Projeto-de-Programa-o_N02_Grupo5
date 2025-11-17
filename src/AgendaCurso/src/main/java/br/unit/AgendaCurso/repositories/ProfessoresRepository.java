@@ -6,8 +6,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -46,14 +44,14 @@ public class ProfessoresRepository {
         return jdbcTemplate.update(sql, professor.getNome());
     }
 
-    public int deleteProfessor(int id){
+    public void deleteProfessor(int id){
         String sql =
                 """
                 DELETE FROM Professores \s
                 WHERE idProfessor = ?;
                \s""";
 
-        return jdbcTemplate.update(sql, id);
+        jdbcTemplate.update(sql, id);
     }
 
     public int countTurmas(int idProfessor){

@@ -1,14 +1,11 @@
 package br.unit.AgendaCurso.repositories;
 
-import br.unit.AgendaCurso.models.Diciplina;
-import br.unit.AgendaCurso.models.Professor;
 import br.unit.AgendaCurso.models.Turma;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -22,7 +19,7 @@ public class TurmaRepository {
     @Autowired
     private DiciplinaRepository _diciplinaRepository;
 
-    public Turma getPorId(int id){
+    public Turma getPorId(int id) {
         String sql = "SELECT * FROM Turma WHERE IdTurma = ?";
         RowMapper<Turma> rowMapper = ((rs, rowNum) -> {
             return new Turma(
@@ -37,9 +34,9 @@ public class TurmaRepository {
         return jdbcTemplate.queryForObject(sql, rowMapper, id);
     }
 
-    public List<Turma> getTodos(){
+    public List<Turma> getTodos() {
         String sql = "SELECT * FROM Turma";
-        RowMapper<Turma> rowMapper = (rs, rowNum) ->{
+        RowMapper<Turma> rowMapper = (rs, rowNum) -> {
             return new Turma(
                     rs.getInt("IdTurma"),
                     rs.getString("Nome"),
@@ -52,12 +49,12 @@ public class TurmaRepository {
         return jdbcTemplate.query(sql, rowMapper);
     }
 
-    public List<Turma> getPorAlunoId(int id){
+    public List<Turma> getPorAlunoId(int id) {
         String sql =
                 "SELECT " +
-                " IdTurma " +
-                "FROM AlunoTurma " +
-                "WHERE IdAluno = ?";
+                        " IdTurma " +
+                        "FROM AlunoTurma " +
+                        "WHERE IdAluno = ?";
 
         RowMapper<Turma> rowMapper = (rs, rowNum) -> {
             return getPorId(rs.getInt("IdTurma"));
@@ -66,7 +63,7 @@ public class TurmaRepository {
         return jdbcTemplate.query(sql, rowMapper, id);
     }
 
-    public List<Turma> getPorProfessorId(int id){
+    public List<Turma> getPorProfessorId(int id) {
         String sql = """
                 SELECT
                     *
@@ -74,7 +71,7 @@ public class TurmaRepository {
                 WHERE IdProfessor = ?
                 """;
 
-        RowMapper<Turma> rowMapper = (rs, rowNum) ->{
+        RowMapper<Turma> rowMapper = (rs, rowNum) -> {
             return new Turma(
                     rs.getInt("IdTurma"),
                     rs.getString("Nome"),
@@ -88,9 +85,18 @@ public class TurmaRepository {
         return jdbcTemplate.query(sql, rowMapper, id);
     }
 
-    public int addTurma(Turma turma){
+    public int addTurma(Turma turma) {
         String sql = "INSERT INTO dbo.Turma (Nome, IdDiciplina, IdProfessor) VALUES (?, ?, ?)";
 
         return jdbcTemplate.update(sql, turma.getNome(), turma.getIdDiciplina(), turma.getIdProfessor());
+    }
+
+    public void removerAlunoTurma(int idAluno, int idTurma) {
+        String sql =
+                """
+                         DELETE FROM AlunoTurma WHERE IdAluno = ? and IdTurma = ?
+                        """;
+
+        jdbcTemplate.update(sql, idAluno, idTurma);
     }
 }
