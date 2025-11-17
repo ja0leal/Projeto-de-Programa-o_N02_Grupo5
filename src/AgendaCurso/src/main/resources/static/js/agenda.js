@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 document.addEventListener("DOMContentLoaded", () => {
     const btnsDeletar = document.querySelectorAll(".btnDeletar");
+    const btnsEntrar = document.querySelectorAll(".btnEntrar");
     btnsDeletar.forEach(button => {
         if (!(button instanceof HTMLButtonElement)) {
             return;
@@ -44,6 +45,50 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 else {
                     alert('Ocorreu um erro desconhecido.');
+                }
+            }
+        }));
+    });
+    btnsEntrar.forEach(button => {
+        if (!(button instanceof HTMLButtonElement)) {
+            return;
+        }
+        button.addEventListener("click", () => __awaiter(void 0, void 0, void 0, function* () {
+            const diciplinaId = button.dataset.id;
+            if (!diciplinaId) {
+                console.error('Falha ao carregar elementos do professor.');
+                return;
+            }
+            const ddlTurma = document.getElementById("ddlEntrarTurma_" + diciplinaId);
+            if (ddlTurma) {
+                const idTurma = ddlTurma.value;
+                if (idTurma != null && idTurma != "0") {
+                    try {
+                        const response = yield fetch(`/api/turma/entrarTurma/${idTurma}`, {
+                            method: 'POST'
+                        });
+                        if (response.ok) {
+                            +window.location.reload();
+                        }
+                        else {
+                            if (response.status === 409) {
+                                const errorMessage = yield response.text();
+                                alert(`Não foi possível entrar: ${errorMessage}`);
+                            }
+                            else {
+                                alert(`Ocorreu um erro desconhecido (Status: ${response.status}).`);
+                            }
+                        }
+                    }
+                    catch (error) {
+                        console.error('Falha sair de turma:', error);
+                        if (error instanceof Error) {
+                            alert(`Ocorreu um erro: ${error.message}`);
+                        }
+                        else {
+                            alert('Ocorreu um erro desconhecido.');
+                        }
+                    }
                 }
             }
         }));

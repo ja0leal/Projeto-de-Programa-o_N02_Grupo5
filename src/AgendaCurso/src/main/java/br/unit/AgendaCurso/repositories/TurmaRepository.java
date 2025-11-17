@@ -85,10 +85,40 @@ public class TurmaRepository {
         return jdbcTemplate.query(sql, rowMapper, id);
     }
 
+    public List<Turma> getPorDiciplinaId(int id) {
+        String sql = """
+                SELECT
+                    *
+                FROM Turma
+                WHERE IdDiciplina = ?
+                """;
+
+        RowMapper<Turma> rowMapper = (rs, rowNum) -> {
+            return new Turma(
+                    rs.getInt("IdTurma"),
+                    rs.getString("Nome"),
+                    rs.getInt("IdDiciplina"),
+                    rs.getInt("IdProfessor"),
+                    _diciplinaRepository.getPorId(rs.getInt("IdDiciplina")),
+                    _professoresRepository.getPorId(rs.getInt("IdProfessor"))
+            );
+        };
+
+        return jdbcTemplate.query(sql, rowMapper, id);
+    }
+
     public int addTurma(Turma turma) {
         String sql = "INSERT INTO dbo.Turma (Nome, IdDiciplina, IdProfessor) VALUES (?, ?, ?)";
 
         return jdbcTemplate.update(sql, turma.getNome(), turma.getIdDiciplina(), turma.getIdProfessor());
+    }
+
+    public void deleteTurma(int idTurma) {
+        String sql =
+                        """
+                         DELETE FROM Turma WHERE IdTurma = ?
+                        """;
+        jdbcTemplate.update(sql, idTurma);
     }
 
     public void removerAlunoTurma(int idAluno, int idTurma) {
@@ -98,5 +128,14 @@ public class TurmaRepository {
                         """;
 
         jdbcTemplate.update(sql, idAluno, idTurma);
+    }
+
+    public int adicionarAlunoTurma(int idAluno, int idTurma) {
+        String sql =
+                """
+                        INSERT INTO AlunoTurma (IdAluno, IdTurma) VALUES (?, ?)
+                        """;
+
+        return jdbcTemplate.update(sql, idAluno, idTurma);
     }
 }

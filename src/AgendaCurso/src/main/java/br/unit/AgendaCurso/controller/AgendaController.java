@@ -5,8 +5,10 @@ import br.unit.AgendaCurso.models.Diciplina;
 import br.unit.AgendaCurso.models.Horario;
 import br.unit.AgendaCurso.models.Turma;
 import br.unit.AgendaCurso.repositories.*;
+import br.unit.AgendaCurso.viewModels.DiciplinaTurma;
 import br.unit.AgendaCurso.viewModels.HorarioLinha;
 import br.unit.AgendaCurso.viewModels.ProximosHorarios;
+import br.unit.AgendaCurso.viewModels.TurmasVM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Controller;
@@ -98,14 +100,43 @@ public class AgendaController {
             addHorario(mapLinha.get(horario.getHorarioInicio()), horario);
         }
 
-        List<ProximosHorarios> proximosHorarios = new ArrayList<>();
+        List<Diciplina> diciplinas = _diciplinaRepository.getTodos();
+        List<DiciplinaTurma> diciplinaTurmas = new ArrayList<>();
 
-        List<Horario> horarios1 = _horarioRepository.getProximosPorTurmas(turmas);
-        for(Horario horario : horarios1) {
-            proximosHorarios.add(new ProximosHorarios(horario));
+        for (Diciplina diciplina : diciplinas) {
+            List<Turma> turmasTotaisDiciplina = _turmaRepository.getPorDiciplinaId(diciplina.getIdDiciplina());
+            List<Turma> turmasDisponiveisMateria = new ArrayList<>();
+
+            for (Turma turma : turmasTotaisDiciplina) {
+                List<Horario> horariosT = _horarioRepository.getPorTurmaId(turma.getIdTurma());
+
+                if (horariosT == null || horariosT.isEmpty()) continue;
+
+                boolean temConflito = false;
+                for (Horario horarioTurma : horariosT) {
+                    if (_horarioRepository.hasHorarioAluno(
+                            horarioTurma.getHorarioInicio(),
+                            horarioTurma.getDiaDaSemana(),
+                            aluno.getIdAluno())) {
+                        temConflito = true;
+                        break;
+                    }
+                }
+                if (!temConflito) {
+                    turmasDisponiveisMateria.add(turma);
+                }
+            }
+
+            List<TurmasVM> turmasVM = new ArrayList<>();
+            for (Turma turma : turmasDisponiveisMateria) {
+                List<Horario> horario = _horarioRepository.getPorTurmaId(turma.getIdTurma());
+                turmasVM.add(new TurmasVM(turma, horario));
+            }
+
+            diciplinaTurmas.add(new DiciplinaTurma(diciplina, turmasVM));
         }
 
-        model.addAttribute("proximosHorarios", proximosHorarios);
+        model.addAttribute("diciplinas", diciplinaTurmas);
         model.addAttribute("horariosLinha", horariosLinha);
         model.addAttribute("turmas", turmas);
         return "agenda/alterarGrade";

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -42,10 +43,29 @@ class TurmaController {
     }
 
     @DeleteMapping("/sairTurma/{id}")
-    public ResponseEntity<?> delete(@PathVariable int id, Principal principal) {
+    public ResponseEntity<?> sairTurma(@PathVariable int id, Principal principal) {
         String matricula = principal.getName();
         Aluno aluno = _alunosRepository.getPorMatricula(matricula).orElseThrow(() -> new RuntimeException("Aluno logado não encontrado"));
         _turmaRepository.removerAlunoTurma(aluno.getIdAluno(), id);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/deletar/{id}")
+    public ResponseEntity<?> delete(@PathVariable int id, Principal principal) {
+        String matricula = principal.getName();
+        Aluno aluno = _alunosRepository.getPorMatricula(matricula).orElseThrow(() -> new RuntimeException("Aluno logado não encontrado"));
+        if(!Objects.equals(aluno.getRole(), "admin")) {
+            return ResponseEntity.ok().build();
+        }
+        _turmaRepository.deleteTurma(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/entrarTurma/{id}")
+    public ResponseEntity<?> entrarTurma(@PathVariable int id, Principal principal) {
+        String matricula = principal.getName();
+        Aluno aluno = _alunosRepository.getPorMatricula(matricula).orElseThrow(() -> new RuntimeException("Aluno logado não encontrado"));
+        _turmaRepository.adicionarAlunoTurma(aluno.getIdAluno(), id);
         return ResponseEntity.ok().build();
     }
 }

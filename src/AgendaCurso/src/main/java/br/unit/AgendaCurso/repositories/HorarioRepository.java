@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalTime;
+import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -59,6 +60,9 @@ public class HorarioRepository {
     }
 
     public List<Horario> getProximosPorTurmas(List<Turma> turmas) {
+        if(turmas.isEmpty()){
+            return Collections.emptyList();
+        }
         String queryCondition = " (";
         for (Turma turma : turmas) {
             String condition = " IdTurma = " + turma.getIdTurma() + " OR ";
@@ -126,6 +130,29 @@ public class HorarioRepository {
                 AS 'Existe'
                 """;
         Boolean existe = jdbcTemplate.queryForObject(sql, Boolean.class, diaSemana, horario, idTurma);
+        return existe != null && existe;
+    }
+
+    public boolean hasHorarioAluno(LocalTime horario, int diaSemana, int idAluno) {
+        String sql = """
+                SELECT
+                    CASE
+                        WHEN EXISTS (
+                                SELECT
+                                    *
+                                FROM Horario h
+                                LEFT JOIN AlunoTurma at
+                                    on at.IdTurma = h.IdTurma
+                                WHERE
+                                    at.IdAluno = ? AND
+                                    CAST(h.HorarioInicio AS TIME) = CAST(? AS TIME) AND
+                                    h.DiaSemana = ?)
+                        THEN 1
+                        ELSE 0
+                    END
+                AS 'Existe'
+               \s""";
+        Boolean existe = jdbcTemplate.queryForObject(sql, Boolean.class, idAluno, horario, diaSemana);
         return existe != null && existe;
     }
 }
